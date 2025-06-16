@@ -4,12 +4,10 @@ import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 // import { useNavigate } from "react-router-dom";
 
-
 import { ThemeContext } from "../ThemeContext";
 
-
 import D2T2 from "./assets/D2T2.png"; // Logo image
-import bp from "./assets/bp.jpg"; // Background image
+import bp from "./assets/fire1.jpg"; // Background image
 import wp from "./assets/wp.jpg"; // Background image
 // import { div, i } from "framer-motion/client";
 
@@ -87,7 +85,7 @@ const HomeUI = () => {
       <div className="relative">
         <div className="flex flex-col items-center justify-center min-h-screen px-4">
           {/* Title */}
-         
+
           <img src={D2T2} alt="D2T" className="w-32 h-32 mt-32 " />
           <h1
             className={`text-6xl font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
@@ -117,31 +115,34 @@ const HomeUI = () => {
               และสัมผัสวิถีชีวิตที่แท้จริงของผู้คน ค้นพบจุดหมายใหม่ ๆ
               ที่คุณอาจไม่เคยรู้ว่ามีอยู่บนแผนที่ของไทย
             </p>
-            
-            <div 
-            className="mx-auto h-20 w-full max-w-72 flex items-center justify-center">
+
+            <div className="mx-auto h-20 w-full max-w-72 flex items-center justify-center">
               <button
-              className="group flex h-12 w-56 items-center justify-center gap-3 border-2 border-pink-500 dark:border-blue-400 bg-gradient-to-r from-pink-100 via-orange-100 to-white dark:from-blue-900 dark:via-purple-900 dark:to-gray-900 px-8 text-lg font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200"
-              style={{ transform: "translateX(0px) translateY(0px)" }}
-              onClick={() => (window.location.href = "/Posts")}
+                className="group flex h-12 w-56 items-center justify-center gap-3 border-2 border-pink-500 dark:border-blue-400 bg-gradient-to-r from-pink-100 via-orange-100 to-white dark:from-blue-900 dark:via-purple-900 dark:to-gray-900 px-8 text-lg font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200"
+                style={{ transform: "translateX(0px) translateY(0px)" }}
+                onClick={() => (window.location.href = "/Posts")}
               >
-              <span className="relative overflow-hidden">
-                <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
-                เริ่มต้นสำรวจ
+                <span className="relative overflow-hidden">
+                  <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
+                    เริ่มต้นสำรวจ
+                  </span>
+                  <span className="absolute left-0 top-0 block translate-y-full transition-transform duration-300 text-10 group-hover:translate-y-0">
+                    ไปกันเลย~~
+                  </span>
                 </span>
-                <span className="absolute left-0 top-0 block translate-y-full transition-transform duration-300 text-10 group-hover:translate-y-0">
-                ไปกันเลย~~
-                </span>
-              </span>
-              <svg
-                className="w-5 h-5 ml-2 text-pink-500 dark:text-blue-400 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 20 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
-              </svg>
+                <svg
+                  className="w-5 h-5 ml-2 text-pink-500 dark:text-blue-400 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 20 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12h14m-7-7l7 7-7 7"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -252,7 +253,6 @@ const HomeUI = () => {
         <Footer />
       </div>
     </div>
-
   );
 };
 
