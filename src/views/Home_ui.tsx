@@ -250,4 +250,4 @@ const HomeUI: React.FC = () => {
   );
 };
 
-export default HomeUI;
+export default HomeUI;   
