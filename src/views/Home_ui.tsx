@@ -76,7 +76,7 @@ const HomeUI = () => {
           mousePosition.x
         }px ${mousePosition.y}px, ${
           darkMode ? "rgba(184, 70, 255, 0.5)" : "rgba(255, 144, 153, 0.5)"
-        }, transparent 80%), url(${darkMode ? bp : wp})`,
+        }, transparent 50%), url(${darkMode ? bp : wp})`,
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
@@ -121,7 +121,7 @@ const HomeUI = () => {
             <div 
             className="mx-auto h-20 w-full max-w-72 flex items-center justify-center">
               <button
-              className="group flex h-12 w-56 items-center justify-center gap-3 border-2 border-pink-500 dark:border-blue-400 bg-gradient-to-r from-pink-100 via-orange-100 to-white dark:from-blue-900 dark:via-purple-900 dark:to-gray-900 px-8 text-lg font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200"
+              className="group flex h-12 w-56 items-center justify-center animate-gradient-anims gap-3 border-2 border-pink-500 dark:border-blue-400 bg-gradient-to-r from-pink-100 via-orange-100 to-white dark:from-blue-900 dark:via-purple-900 dark:to-gray-900 px-8 text-lg font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200"
               style={{ transform: "translateX(0px) translateY(0px)" }}
               onClick={() => (window.location.href = "/Posts")}
               >

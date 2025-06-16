@@ -5,11 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FFFF", // Blue
-        secondary: "#000", // Yellow
-        accent: "#808080", // Red
-        neutral: " #808080", // Gray
-        "base-100": "#FFFFFF", // White
+        primary: "#FFFF", 
+        secondary: "#000", 
+        accent: "#808080", 
+        neutral: " #808080", 
+        "base-100": "#FFFFFF", 
       },
       keyframes: {
         "gradient-anim": {
@@ -20,7 +20,7 @@ export default {
       },
       // เพิ่มชื่อ animation เพื่อเรียกใช้
       animation: {
-        "gradient-anim": "gradient-anim 4s ease infinite",
+        "gradient-anim": "gradient-anim 5s ease infinite",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
