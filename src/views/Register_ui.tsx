@@ -3,8 +3,8 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../ThemeContext";
 import { FaGoogle, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import bp from "./assets/bp.jpg"; // Background image
-import wp from "./assets/wp.jpg"; // Background image
+import bp from "./assets/fire1.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; // Background image
 
 const Login: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -76,7 +76,7 @@ const Login: React.FC = () => {
       }}
     >
       <div className="relative min-h-screen flex items-center justify-center px-4">
-        <div className="border-2 bg-primary dark:bg-secondary border-blue-400 dark:border-pink-400 rounded-2xl shadow-2xl p-8 max-w-4xl w-full relative backdrop-blur-md flex flex-col md:flex-row gap-8">
+        <div className="border-2 bg-primary dark:bg-zinc-950 border-blue-400 dark:border-white rounded-2xl shadow-2xl p-8 max-w-4xl w-full relative backdrop-blur-md flex flex-col md:flex-row gap-8">
           {/* Left: Social Buttons */}
           <div className="flex-1 flex flex-col justify-center items-center gap-6 border-r-0 md:border-r md:pr-8 border-blue-200">
             <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">
@@ -122,7 +122,7 @@ const Login: React.FC = () => {
             {/* Top right controls */}
             <div className="absolute top-0 right-0 flex flex-col items-end gap-2 z-10">
               <button
-                className="text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-pink-400 bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
+                className="text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-white bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
                 onClick={() => setLang(lang === "th" ? "en" : "th")}
                 aria-label="Switch language"
               >
@@ -130,7 +130,7 @@ const Login: React.FC = () => {
               </button>
               <button
                 onClick={toggleDarkMode}
-                className="flex items-center gap-2 text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-pink-400 bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
+                className="flex items-center gap-2 text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-white bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
               >
                 {darkMode ? (
                   <>
@@ -151,7 +151,7 @@ const Login: React.FC = () => {
             </div>
             {/* Home Button */}
             <button
-              className="bg-gradient-to-r from-blue-400 to-pink-400 text-white mt-4 py-2 rounded-full hover:from-pink-400 hover:to-orange-400 hover:text-white mb-6 font-semibold shadow transition duration-300 w-20 "
+              className="bg-pink-600 text-white mt-4 py-2 rounded-full hover:from-black hover:to-orange-400 hover:text-white mb-6 font-semibold shadow transition duration-300 w-20 "
               onClick={() => (window.location.href = "/")}
             >
               {t.home}
@@ -178,7 +178,7 @@ const Login: React.FC = () => {
                 <input
                   type="email"
                   id="email"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 dark:bg-gray-800/80 transition"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-white bg-white/80 dark:bg-gray-800/80 transition"
                   placeholder={t.enMail}
                   required
                 />
@@ -193,7 +193,7 @@ const Login: React.FC = () => {
                 <input
                   type="text"
                   id="UserName"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 dark:bg-gray-800/80 transition"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-white bg-white/80 dark:bg-gray-800/80 transition"
                   placeholder={t.enUserN}
                   required
                 />
@@ -208,7 +208,7 @@ const Login: React.FC = () => {
                 <input
                   type="password"
                   id="password"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 dark:bg-gray-800/80 transition"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-white bg-white/80 dark:bg-gray-800/80 transition"
                   placeholder={t.enPass}
                   required
                 />
@@ -223,7 +223,7 @@ const Login: React.FC = () => {
                 <input
                   type="password"
                   id="ConfirmPassword"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 dark:bg-gray-800/80 transition"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-white bg-white/80 dark:bg-gray-800/80 transition"
                   placeholder={t.enConPass}
                   required
                 />

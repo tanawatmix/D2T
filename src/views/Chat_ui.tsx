@@ -20,7 +20,6 @@ const ChatUI = () => {
   const location = useLocation();
   const title = location.state?.title ?? "ไม่ทราบชื่อโพสต์";
   const { darkMode } = useContext(ThemeContext);
-  
 
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
@@ -30,7 +29,6 @@ const ChatUI = () => {
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
 
   useEffect(() => {
     const container = chatContainerRef.current;
@@ -81,16 +79,15 @@ const ChatUI = () => {
   };
 
   const handleMediaSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const file = event.target.files?.[0];
-  if (file) {
-    const mediaUrl = URL.createObjectURL(file);
-    const isVideo = file.type.startsWith("video/");
-    const type = isVideo ? "video" : "image";
+    const file = event.target.files?.[0];
+    if (file) {
+      const mediaUrl = URL.createObjectURL(file);
+      const isVideo = file.type.startsWith("video/");
+      const type = isVideo ? "video" : "image";
 
-    setMessages([...messages, { type, content: mediaUrl }]);
-  }
-};
-
+      setMessages([...messages, { type, content: mediaUrl }]);
+    }
+  };
 
   return (
     <div
@@ -100,13 +97,12 @@ const ChatUI = () => {
       }}
     >
       <Navbar />
-      
+
       <div className="flex-grow px-4 py-20 max-w-2xl mx-auto w-full">
-      
         <h1 className="text-2xl font-bold mb-4 text-secondary dark:text-primary">
           แชทสำหรับโพสต์: {title}
         </h1>
-        
+
         <div className="relative">
           <div
             ref={chatContainerRef}
@@ -114,9 +110,7 @@ const ChatUI = () => {
             className="bg-white rounded shadow border border-blue-400 dark:border-pink-400 h-96 overflow-y-auto p-4 mb-4"
           >
             {messages.length === 0 ? (
-              <p className="text-gray-500 text-center text-secondary">
-                ยังไม่มีข้อความ
-              </p>
+              <p className="text-gray-500 text-center">ยังไม่มีข้อความ</p>
             ) : (
               messages.map((msg, index) => (
                 <div key={index} className="mb-2 text-right">
@@ -125,21 +119,21 @@ const ChatUI = () => {
                       {msg.content}
                     </div>
                   ) : msg.type === "image" ? (
-      <div className="inline-block bg-pink-100 p-1 rounded-lg">
-        <img
-          src={msg.content}
-          alt="ส่งรูป"
-          className="max-w-xs max-h-48 rounded"
-        />
-      </div>
-    ) : (
-      <div className="inline-block bg-pink-100 p-1 rounded-lg">
-        <video
-          src={msg.content}
-          controls
-          className="max-w-xs max-h-48 rounded"
-        />
-      </div>
+                    <div className="inline-block bg-pink-100 p-1 rounded-lg">
+                      <img
+                        src={msg.content}
+                        alt="ส่งรูป"
+                        className="max-w-xs max-h-48 rounded"
+                      />
+                    </div>
+                  ) : (
+                    <div className="inline-block bg-pink-100 p-1 rounded-lg">
+                      <video
+                        src={msg.content}
+                        controls
+                        className="max-w-xs max-h-48 rounded"
+                      />
+                    </div>
                   )}
                 </div>
               ))

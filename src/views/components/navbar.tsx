@@ -1,6 +1,12 @@
-import React, { useState, useEffect, useContext, type Dispatch, type SetStateAction } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import { FiMenu, FiX, FiUser, FiMoon, FiSun } from "react-icons/fi";
-import logo from "../assets/dremovebg-1.png";
+import logo from "../assets/dare2New.png";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "../../ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -52,27 +58,25 @@ const Navbar: React.FC = () => {
   );
   const [selected, setSelected] = useState<ToggleOptionsType>("light");
 
-// sync selected toggle with current themeห
-useEffect(() => {
-  setSelected(darkMode ? "dark" : "light");
-}, [darkMode]);
+  // sync selected toggle with current themeห
+  useEffect(() => {
+    setSelected(darkMode ? "dark" : "light");
+  }, [darkMode]);
 
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setUser(null);
+    window.location.href = "/home"; // หรือ redirect ไปหน้าที่ต้องการ
+  };
 
-const handleLogout = () => {
-  localStorage.removeItem("isLoggedIn");
-  localStorage.removeItem("user");
-  setIsLoggedIn(false);
-  setUser(null);
-  window.location.href = "/home"; // หรือ redirect ไปหน้าที่ต้องการ
-};
-
- function toggleMenu() {
-  setIsOpen((prev) => !prev);
-}
-
+  function toggleMenu() {
+    setIsOpen((prev) => !prev);
+  }
 
   return (
-    <nav className="border-b border-blue-400 dark:border-pink-400 bg-primary dark:bg-secondary py-4 px-6 fixed w-full z-50 shadow transition duration-500">
+    <nav className="border-b border-blue-400 dark:border-white bg-primary dark:bg-secondary py-4 px-6 fixed w-full z-50 shadow transition duration-500">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div
@@ -178,84 +182,83 @@ const handleLogout = () => {
 
       {/* Mobile Menu */}
       <AnimatePresence>
-      {isOpen && (
-        <div className="md:hidden mt-4 flex flex-col space-y-2 bg-primary dark:bg-secondary rounded p-4 transition duration-500">
-          <NavButton to="/Posts">{t("place")}</NavButton>
-          <NavButton to="/home">{t("home")}</NavButton>
-          {!isLoggedIn ? (
-            <>
-              <NavButton to="/register">{t("register")}</NavButton>
-              <NavButton to="/login">{t("login")}</NavButton>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={handleLogout}
-                className="font-bold text-red-500 hover:text-red-700 transition"
-              >
-                {t("logout")}
-              </button>
-              <NavButton
-                to="/profile"
-                className="flex items-center justify-center "
-              >
-                <FiUser className="mr-1 text-secondary dark:text-primary " />
-                {t("hello_user", { name: user?.username })}
-              </NavButton>
-            </>
-          )}
+        {isOpen && (
+          <div className="md:hidden mt-4 flex flex-col space-y-2 bg-primary dark:bg-secondary rounded p-4 transition duration-500">
+            <NavButton to="/Posts">{t("place")}</NavButton>
+            <NavButton to="/home">{t("home")}</NavButton>
+            {!isLoggedIn ? (
+              <>
+                <NavButton to="/register">{t("register")}</NavButton>
+                <NavButton to="/login">{t("login")}</NavButton>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={handleLogout}
+                  className="font-bold text-red-500 hover:text-red-700 transition"
+                >
+                  {t("logout")}
+                </button>
+                <NavButton
+                  to="/profile"
+                  className="flex items-center justify-center "
+                >
+                  <FiUser className="mr-1 text-secondary dark:text-primary " />
+                  {t("hello_user", { name: user?.username })}
+                </NavButton>
+              </>
+            )}
 
-          <select
-            onChange={(e) => changeLanguage(e.target.value as "en" | "th")}
-            value={i18n.language}
-            className="border rounded text-center px-2 py-1 text-black border-secondary dark:text-white dark:border-white dark:bg-secondary hover:text-secondary"
-          >
-            <option value="th">ภาษาไทย</option>
-            <option value="en">ENGLISH</option>
-          </select>
-           <div className="relative flex w-fit items-center rounded-full">
-            <button
-              className={`${TOGGLE_CLASSES} ${
-                selected === "light" ? "text-white" : "text-slate-300"
-              }`}
-              onClick={() => {
-                setSelected("light");
-                if (darkMode) toggleDarkMode();
-              }}
+            <select
+              onChange={(e) => changeLanguage(e.target.value as "en" | "th")}
+              value={i18n.language}
+              className="border rounded text-center px-2 py-1 text-black border-secondary dark:text-white dark:border-white dark:bg-secondary hover:text-secondary"
             >
-              <FiMoon className="relative z-10 text-lg md:text-sm" />
-              <span className="relative z-10">Light</span>
-            </button>
-            <button
-              className={`${TOGGLE_CLASSES} ${
-                selected === "dark" ? "text-white" : "text-slate-800"
-              }`}
-              onClick={() => {
-                setSelected("dark");
-                if (!darkMode) toggleDarkMode();
-              }}
-            >
-              <FiSun className="relative z-10 text-lg md:text-sm" />
-              <span className="relative z-10">Dark</span>
-            </button>
-            <div
-              className={`absolute inset-0 z-0 flex ${
-                selected === "dark" ? "justify-end" : "justify-start"
-              }`}
-            >
-              <motion.span
-                layout
-                transition={{ type: "spring", damping: 15, stiffness: 250 }}
-                className="h-full w-1/2 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600"
-              />
+              <option value="th">ภาษาไทย</option>
+              <option value="en">ENGLISH</option>
+            </select>
+            <div className="relative flex w-fit items-center rounded-full">
+              <button
+                className={`${TOGGLE_CLASSES} ${
+                  selected === "light" ? "text-white" : "text-slate-300"
+                }`}
+                onClick={() => {
+                  setSelected("light");
+                  if (darkMode) toggleDarkMode();
+                }}
+              >
+                <FiMoon className="relative z-10 text-lg md:text-sm" />
+                <span className="relative z-10">Light</span>
+              </button>
+              <button
+                className={`${TOGGLE_CLASSES} ${
+                  selected === "dark" ? "text-white" : "text-slate-800"
+                }`}
+                onClick={() => {
+                  setSelected("dark");
+                  if (!darkMode) toggleDarkMode();
+                }}
+              >
+                <FiSun className="relative z-10 text-lg md:text-sm" />
+                <span className="relative z-10">Dark</span>
+              </button>
+              <div
+                className={`absolute inset-0 z-0 flex ${
+                  selected === "dark" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <motion.span
+                  layout
+                  transition={{ type: "spring", damping: 15, stiffness: 250 }}
+                  className="h-full w-1/2 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </AnimatePresence>
     </nav>
   );
 };
 
 export default Navbar;
-

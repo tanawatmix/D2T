@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../ThemeContext";
 import React from "react";
-import bp from "./assets/bp.jpg"; // Background image
-import wp from "./assets/wp.jpg"; // Background image
+import bp from "./assets/fire1.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; // Background image
 
 const Login: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -13,7 +13,6 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [lang, setLang] = useState<"th" | "en">("th");
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-  
 
   const translations = {
     th: {
@@ -72,7 +71,9 @@ const Login: React.FC = () => {
   return (
     <div
       className={`relative min-h-screen flex items-center justify-center transition duration-500 ${
-        darkMode ? "bg-gray-950 text-white" : "bg-gradient-to-br from-blue-100 via-white to-pink-100 text-black"
+        darkMode
+          ? "bg-gray-950 text-white"
+          : "bg-gradient-to-br from-blue-100 via-white to-pink-100 text-black"
       }`}
       style={{
         backgroundImage: `url(${darkMode ? bp : wp})`,
@@ -85,12 +86,12 @@ const Login: React.FC = () => {
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.4, type: "spring" }}
-          className="bg-primary dark:bg-secondary border-2 border-blue-400 dark:border-pink-400 shadow-2xl rounded-3xl p-10 max-w-md w-full relative backdrop-blur-lg"
+          className="bg-primary dark:bg-secondary border-2 border-blue-400 dark:border-white shadow-2xl rounded-3xl p-10 max-w-md w-full relative backdrop-blur-lg"
         >
           {/* Language & Theme Switcher */}
           <div className="absolute top-4 right-4 flex flex-col items-end gap-2 z-10">
             <button
-              className="text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-pink-400 bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
+              className="text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-white bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
               onClick={() => setLang(lang === "th" ? "en" : "th")}
               aria-label="Switch language"
             >
@@ -98,17 +99,21 @@ const Login: React.FC = () => {
             </button>
             <button
               onClick={toggleDarkMode}
-              className="flex items-center gap-2 text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-pink-400 bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
+              className="flex items-center gap-2 text-xs font-semibold py-1 px-4 rounded-full border border-blue-400 dark:border-white bg-white/80 dark:bg-gray-800/80 text-blue-600 dark:text-pink-400 hover:bg-blue-100 dark:hover:bg-pink-900 transition"
             >
               {darkMode ? (
                 <>
                   <span>Light</span>
-                  <span role="img" aria-label="Light mode">☀️</span>
+                  <span role="img" aria-label="Light mode">
+                    ☀️
+                  </span>
                 </>
               ) : (
                 <>
                   <span>Dark</span>
-                  <span role="img" aria-label="Dark mode">🌙</span>
+                  <span role="img" aria-label="Dark mode">
+                    🌙
+                  </span>
                 </>
               )}
             </button>
@@ -127,7 +132,7 @@ const Login: React.FC = () => {
           </h3>
 
           <form
-            onSubmit={e => {
+            onSubmit={(e) => {
               e.preventDefault();
               handleLogin();
             }}
@@ -139,20 +144,23 @@ const Login: React.FC = () => {
               <input
                 type="email"
                 id="email"
-                className="w-full p-3 border-2 border-blue-200 dark:border-pink-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
+                className="w-full p-3 border-2 border-blue-200 dark:border-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
                 placeholder={t.email}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="username"
               />
 
-              <label htmlFor="password" className="block mt-4 mb-2 font-semibold">
+              <label
+                htmlFor="password"
+                className="block mt-4 mb-2 font-semibold"
+              >
                 {t.password}
               </label>
               <input
                 type="password"
                 id="password"
-                className="w-full p-3 border-2 border-blue-200 dark:border-pink-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
+                className="w-full p-3 border-2 border-blue-200 dark:border-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
                 placeholder={t.password}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
