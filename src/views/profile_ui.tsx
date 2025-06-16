@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../ThemeContext";
 import Cropper from "react-easy-crop";
 import type { Area } from "react-easy-crop";
-import getCroppedImg from "./utils/cropImage"; // ฟังก์ชันสำหรับครอปภาพ
+import getCroppedImg from "../../src/views/assets/utils/cropImage"; // ฟังก์ชันสำหรับครอปภาพ
 import Profile from "./assets/nay.jpg";
 // import bg from "./assets/bg2.jpg";
 import Navbar from "./components/navbar";
@@ -69,9 +69,9 @@ const ProfileUI = () => {
   return (
     <div
       className="relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
-        style={{
-          backgroundImage: `url(${darkMode ? bp : wp})`,
-        }}
+      style={{
+        backgroundImage: `url(${darkMode ? bp : wp})`,
+      }}
     >
       <Navbar />
       <div className="flex justify-center pt-20 pb-10">

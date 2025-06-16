@@ -6,9 +6,9 @@ import Footer from "./components/Footer";
 
 import { ThemeContext } from "../ThemeContext";
 
-import D2T2 from "./assets/D2T2.png"; // Logo image
+import D2T2 from "./assets/D2win.png"; // Logo image
 import bp from "./assets/fire1.jpg"; // Background image
-import wp from "./assets/wp.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; // Background image
 // import { div, i } from "framer-motion/client";
 
 const images = [
@@ -88,13 +88,13 @@ const HomeUI = () => {
 
           <img src={D2T2} alt="D2T" className="w-32 h-32 mt-32 " />
           <h1
-            className={`text-6xl font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
+            className={`text-3xl font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
               darkMode
                 ? "from-blue-500 via-purple-300 to-pink-400"
                 : "from-pink-500 via-pink-400 to-orange-300"
             }`}
           >
-            Dare2Thaix
+            เมืองหลวงที่เต็มไปด้วยความทันสมัยและวัฒนธรรมดั้งเดิม
           </h1>
 
           {/* Description */}
