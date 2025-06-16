@@ -23,8 +23,8 @@ export default {
         "gradient-anim": "gradient-anim 5s ease infinite",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        serif: ["Merriweather", "serif"],
+        
+        sriracha: ['Sriracha', 'cursive'],
       },
       backgroundImage: {
         "light-bg":

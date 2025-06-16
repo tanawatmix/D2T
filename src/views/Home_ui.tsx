@@ -88,13 +88,13 @@ const HomeUI = () => {
 
           <img src={D2T2} alt="D2T" className="w-32 h-32 mt-32 " />
           <h1
-            className={`text-6xl font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
+            className={`font-sriracha text-6xl font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
               darkMode
                 ? "from-blue-500 via-purple-300 to-pink-400"
                 : "from-pink-500 via-pink-400 to-orange-300"
             }`}
           >
-            ยินดีต้อนรับสู่ Dare2Thai
+            ยินดีต้อนรับสู่Dare2Thai
           </h1>
 
           {/* Description */}
@@ -106,7 +106,7 @@ const HomeUI = () => {
               เป็นแพลตฟอร์มที่เชื่อมโยงผู้คนที่รักการท่องเที่ยวและการสำรวจสถานที่ใหม่
               ๆ ในประเทศไทย
             </p>
-            <p className="text-base text-center mb-4">
+            <p className=" text-base text-center mb-4">
               เราเชื่อว่าการเดินทางไม่ใช่แค่การเปลี่ยนสถานที่
               แต่คือการเปิดมุมมองใหม่ ๆ ให้กับชีวิต
               ไม่ว่าคุณจะเป็นนักเดินทางสายลุย นักถ่ายภาพธรรมชาติ
