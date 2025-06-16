@@ -11,8 +11,8 @@ import Footer from "./components/Footer";
 import Slider from "@mui/material/Slider";
 import Modal from "@mui/material/Modal";
 
-import bp from "./assets/bp.jpg"; // Background image
-import wp from "./assets/wp.jpg";
+import bp from "./assets/fire1.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; 
 
 const ProfileUI = () => {
   const [avatar, setAvatar] = useState(Profile);
@@ -68,14 +68,14 @@ const ProfileUI = () => {
 
   return (
     <div
-      className="relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
+      className="font-sriracha text-black relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
       style={{
         backgroundImage: `url(${darkMode ? bp : wp})`,
       }}
     >
       <Navbar />
       <div className="flex justify-center pt-20 pb-10">
-        <div className="bg-primary-opacity-50 backdrop-blur-lg border-2 border-blue-400 dark:border-pink-400 dark:bg-secondary-opacity-50 text-secondary dark:text-primary font-bold p-8 rounded-md shadow-md w-full max-w-2xl">
+        <div className="bg-primary-opacity-50 backdrop-blur-lg border-2 border-blue-400 dark:border-pink-400 dark:bg-secondary-opacity-50 dark:text-primary font-bold p-8 rounded-md shadow-md w-full max-w-2xl">
           <h2 className="text-xl font-semibold mb-2 underline text-center">
             Your Personal Information
           </h2>
@@ -168,7 +168,7 @@ const ProfileUI = () => {
 
       {/* Modal for cropping image */}
       <Modal open={open} onClose={() => setOpen(false)}>
-        <div className="absolute top-1/2 left-1/2 w-[90vw] max-w-[500px] bg-white dark:bg-secondary p-4 rounded shadow transform -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute font-sriracha top-1/2 left-1/2 w-[90vw] max-w-[500px] bg-white dark:bg-secondary p-4 rounded shadow transform -translate-x-1/2 -translate-y-1/2">
           <div className="relative w-full h-60 bg-gray-200">
             {imageSrc && (
               <Cropper

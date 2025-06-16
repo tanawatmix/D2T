@@ -5,9 +5,8 @@ import React from "react";
 
 import pic from "./assets/picture.png";
 import send from "./assets/send.png";
-import bp from "./assets/bp.jpg"; // Background image for dark mode
-import wp from "./assets/wp.jpg"; // Background image for light mode
-
+import bp from "./assets/fire1.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; 
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 
@@ -91,7 +90,7 @@ const ChatUI = () => {
 
   return (
     <div
-      className="relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
+      className="font-sriracha relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
       style={{
         backgroundImage: `url(${darkMode ? bp : wp})`,
       }}

@@ -5,8 +5,8 @@ import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import React from "react";
 import { BsCardImage } from "react-icons/bs";
-import bp from "./assets/bp.jpg"; // Background image
-import wp from "./assets/wp.jpg"; // Background image
+import bp from "./assets/fire1.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; 
 
 
 
@@ -104,7 +104,7 @@ const CreatePost = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
-    const selectedFiles = Array.from(files).slice(0, 10);
+    const selectedFiles = Array.from(files).slice(0, 5);
     setImages(selectedFiles);
     const previews = selectedFiles.map((file) => URL.createObjectURL(file));
     setImagePreviews(previews);
@@ -130,7 +130,7 @@ const CreatePost = () => {
 
   return (
     <div
-      className="relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
+      className="font-sriracha relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
         style={{
           backgroundImage: `url(${darkMode ? bp : wp})`,
         }}
@@ -144,7 +144,7 @@ const CreatePost = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
-              placeholder="ชื่อร้าน/โพสต์"
+              placeholder="ชื่อร้าน / โพสต์"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="w-full border focus:outline-none text-secondary rounded px-4 py-2"
@@ -163,7 +163,7 @@ const CreatePost = () => {
               <select
                 value={placeType}
                 onChange={(e) => setPlaceType(e.target.value)}
-                className="w-1/3 p-2 border text-blue-600 bg-blue-100 rounded-full mr-10 "
+                className="w-1/3 p-2 border ml-12 text-blue-600 bg-blue-100 rounded-full mr-10 "
               >
                 <option value="">เลือกประเภท</option>
                 {placeTypes.map((type) => (
@@ -175,7 +175,7 @@ const CreatePost = () => {
               <select
                 value={province}
                 onChange={(e) => setProvince(e.target.value)}
-                className="w-1/2 p-2 border text-green-600 bg-green-100 rounded-full "
+                className="w-1/3 p-2 border text-green-600 bg-green-100 rounded-full "
               >
                 <option value="">เลือกจังหวัด</option>
                 {provinces.map((prov) => (
@@ -192,7 +192,7 @@ const CreatePost = () => {
               className="w-full bg-primary text-xs px-10 w-14 justify-items-center dark:bg-secondary dark:text-primary border border-blue-400 dark:border-pink-400 text-secondary py-3 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition"
             >
               <BsCardImage className="text-2xl" />
-              เพิ่มรูปภาพ/สูงสุด10ภาพ
+              เพิ่มรูปภาพ / สูงสุด 5 ภาพ
             </button>
             <input
               id="image-upload"
@@ -219,7 +219,7 @@ const CreatePost = () => {
             <div>
               <button
                 type="submit"
-                className="w-1/3 bg-blue-500 text-white py-2 mr-1 rounded hover:bg-blue-600 transition"
+                className="w-1/3 bg-blue-500 text-white py-2 mr-1 ml-6 rounded hover:bg-blue-600 transition"
               >
                 โพสต์
               </button>
@@ -234,9 +234,18 @@ const CreatePost = () => {
                   setPlaceType("");
                   setProvince("");
                 }}
-                className="w-1/3 mt-2 bg-red-500 text-white py-2 rounded hover:bg-blue-600 transition"
+                className="w-1/3 mt-2 bg-red-500 text-white py-2 ml-20 rounded hover:bg-blue-600 transition"
               >
                 ยกเลิก
+              </button>
+               <button
+                type="button"
+                onClick={() => {
+                  navigate(-1); // กลับไปหน้าก่อนหน้า
+                }}
+                className="w-full mt-2 bg-green-500 text-white py-2 rounded hover:bg-blue-600 transition"
+              >
+                กลับไปหน้าก่อนหน้า
               </button>
             </div>
           </form>

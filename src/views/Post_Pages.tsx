@@ -139,7 +139,7 @@ const PostPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col ${
+      className={`font-sriracha min-h-screen flex flex-col ${
         darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
       }`}
     >

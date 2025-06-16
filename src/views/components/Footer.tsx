@@ -49,6 +49,22 @@ const Footer = () => {
           >
             <FaGithub className="text-xl " />
           </a>
+          <p className="ml-1 text-xs">
+          6552410002
+          </p>
+          <a
+            href="https://github.com/MOOMOO888"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`dark:hover:text-sky-400 dark:text-pink-400 text-blue-400 hover:text-pink-400 ${
+              darkMode ? "text-blue-400" : ""
+            }`}
+          >
+            <FaGithub className="text-xl " />
+          </a>
+          <p className="ml-1 text-xs">
+          6552410003
+          </p>
         </div>
       </div>
     </footer>

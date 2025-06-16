@@ -7,7 +7,7 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ image, title, description }) => {
   return (
-    <div className="py-20 px-5">
+    <div className="font-sriracha py-20 px-5">
       <div className=" max-w-5xl w-full border rounded-lg p-5 hover:shadow-lg transition-shadow duration-300 object-center mx-auto bg-white ">
         <img src={image} alt={title} className="object-contain w-full h-80 " />
         <div className="mt-4">

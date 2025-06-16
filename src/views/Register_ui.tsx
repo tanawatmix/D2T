@@ -68,7 +68,7 @@ const Login: React.FC = () => {
 
   return (
     <div
-      className="bg-fixed bg-cover min-h-screen"
+      className="font-sriracha bg-fixed bg-cover min-h-screen"
       style={{
         backgroundImage: `url(${darkMode ? bp : wp}`,
         backgroundSize: "cover",

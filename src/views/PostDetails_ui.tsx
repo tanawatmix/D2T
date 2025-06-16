@@ -4,8 +4,8 @@ import Footer from "./components/Footer";
 import { ThemeContext } from "../ThemeContext";
 import React from "react";
 import { useContext } from "react";
-import bp from "./assets/bp.jpg"; // Background image
-import wp from "./assets/wp.jpg"; // Background image
+import bp from "./assets/fire1.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; 
 
 const PostDetailsUI = () => {
   const { state } = useLocation();
@@ -36,7 +36,7 @@ const PostDetailsUI = () => {
   const { title, images, type, province, description } = state;
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="font-sriracha flex flex-col min-h-screen">
       <Navbar />
       <div
         className="relative bg-fixed bg-center bg-cover transition duration-500 flex-1"

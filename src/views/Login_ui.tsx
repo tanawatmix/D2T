@@ -70,7 +70,7 @@ const Login: React.FC = () => {
 
   return (
     <div
-      className={`relative min-h-screen flex items-center justify-center transition duration-500 ${
+      className={`font-sriracha relative min-h-screen flex items-center justify-center transition duration-500 ${
         darkMode
           ? "bg-gray-950 text-white"
           : "bg-gradient-to-br from-blue-100 via-white to-pink-100 text-black"

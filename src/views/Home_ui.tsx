@@ -87,9 +87,9 @@ const HomeUI = () => {
         <div className="flex flex-col items-center justify-center min-h-screen px-4">
           {/* Title */}
 
-          <img src={D2T2} alt="D2T" className="w-64 h-42 mt-32 " />
+          <img src={D2T2} alt="D2T" className="w-64 h-42 mt-16 " />
           <h1
-            className={`font-sriracha text-6xl font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
+            className={`font-sriracha text-6xl py-4 font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
               darkMode
                 ? "from-blue-500 via-purple-300 to-pink-400"
                 : "from-pink-500 via-pink-400 to-orange-300"
@@ -100,7 +100,7 @@ const HomeUI = () => {
 
           {/* Description */}
           <div
-            className={`font-sriracha max-w-3xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-8 mt-4 mb-8 transition duration-500`}
+            className={`font-sriracha max-w-3xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-3 mb-8 transition duration-500`}
           >
             <p className="text-xl font-bold text-center mb-4">
               Dare2Thai
@@ -159,7 +159,7 @@ const HomeUI = () => {
               }
               aria-label="Scroll left"
             >
-              ◀=
+              🢀
             </button>
             <div className="overflow-hidden  rounded-xl w-full">
               <motion.div
@@ -192,7 +192,7 @@ const HomeUI = () => {
               }
               aria-label="Scroll right"
             >
-              =▶
+            🡺
             </button>
           </div>
           {/* Carousel Dots */}
@@ -206,7 +206,7 @@ const HomeUI = () => {
                     ? darkMode
                       ? "bg-secondary"
                       : "bg-pink-500"
-                    : "bg-primary hover:bg-gray-500 transition duration-200"
+                    : "bg-primary hover:bg-gray-500 transition duration-400"
                 }`}
               />
             ))}
@@ -214,8 +214,9 @@ const HomeUI = () => {
 
           {/* Thailand Summary */}
           <div
-            className={`max-w-4xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-8 mt-16 mb-20 transition duration-500`}
+            className={`max-w-4xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-4 mt-16 mb-20 transition duration-500`}
           >
+          
             <h2
               className={`font-sriracha text-2xl font-bold mb-4 text-center bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent ${
                 darkMode

@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
   }: React.ButtonHTMLAttributes<HTMLButtonElement> & { to: string }) => (
     <button
       onClick={() => (window.location.href = to)}
-      className={`font-sriracha transition duration-300 font-bold px-2 py-1 rounded hover:bg-gradient-to-r hover:from-pink-400 hover:to-orange-200 ${
+      className={`font-sriracha transition duration-300 font-bold px-2 py-1 rounded hover:bg-gradient-to-r hover:from-pink-400 hover:to-orange-200  ${
         darkMode
           ? "bg-gradient-to-r from-blue-500 via-purple-300 to-pink-400 bg-clip-text text-transparent"
           : "bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent"
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className="border-b border-blue-400 dark:border-white bg-primary dark:bg-secondary py-4 px-6 fixed w-full z-50 shadow transition duration-500">
+    <nav className="font-sriracha border-b border-blue-400 dark:border-white bg-primary dark:bg-secondary py-4 px-6 fixed w-full z-50 shadow transition duration-500">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
             Dare2Thai
           </span>
         </div>
-
+        
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4 ">
           <NavButton to="/Posts">{t("place")}</NavButton>
@@ -211,7 +211,8 @@ const Navbar: React.FC = () => {
               <option value="th">ภาษาไทย</option>
               <option value="en">ENGLISH</option>
             </select>
-            <div className="relative flex w-fit items-center rounded-full">
+
+            <div className="relative flex w-fit rounded-full">
               <button
                 className={`${TOGGLE_CLASSES} ${
                   selected === "light" ? "text-white" : "text-slate-300"

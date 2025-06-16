@@ -38,7 +38,7 @@ const PostCard = ({
     images && images.length > 0 ? images[0] : fallbackImage;
   return (
     <div
-      className="bg-white dark:bg-secondary hover:scale-105 rounded-lg shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
+      className="font-sriracha bg-white dark:bg-secondary hover:scale-105 rounded-lg shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
       onClick={handleCardClick}
     >
       <img
