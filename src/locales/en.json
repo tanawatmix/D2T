@@ -1,0 +1,9 @@
+{
+  "place": "ChatRooms",
+  "home": "HomePage",
+  "register": "Register",
+  "login": "Login",
+  "logout": "Logout",
+  "profile": "Profile",
+  "hello_user": "Hello, {{name}}"
+}
