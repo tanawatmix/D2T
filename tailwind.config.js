@@ -6,7 +6,7 @@ export default {
     extend: {
       colors: {
         primary: "#FFFFFF", // Blue
-        secondary: "#6f6968", // Yellow
+        secondary: "#000000", // Yellow
         accent: "#808080", // Red
         neutral: " #808080", // Gray
         "base-100": "#FFFFFF", // White

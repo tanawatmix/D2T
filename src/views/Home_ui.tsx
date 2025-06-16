@@ -195,24 +195,25 @@ const HomeUI = () => {
             🡺
             </button>
           </div>
-          {/* Carousel Dots */}
-          <div className=" flex bg-primary rounded-full justify-center">
-            {images.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setImgIndexSafe(idx)}
-                className={`h-3 w-6 hover:scale-150 rounded-full transition-colors ${
-                  idx === imgIndex
+                <div className="flex bg-primary rounded-full  justify-center">
+                {images.map((_, idx) => (
+                  <button
+                  key={idx}
+                  onClick={() => setImgIndexSafe(idx)}
+                  className={`h-3 w-6 hover:scale-150 rounded-full hover:border-2 border-white-500 transition-all duration-100 ${
+                    idx === imgIndex
                     ? darkMode
-                      ? "bg-secondary"
-                      : "bg-pink-500"
-                    : "bg-primary hover:bg-gray-500 transition duration-400"
-                }`}
-              />
-            ))}
-          </div>
+                      ? "bg-secondary scale-150 shadow-lg"
+                      : "bg-pink-500 scale-150 shadow-lg"
+                    : "bg-primary hover:bg-gray-500"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+                </div>
 
-          {/* Thailand Summary */}
+
+                
           <div
             className={`max-w-4xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-4 mt-16 mb-20 transition duration-500`}
           >

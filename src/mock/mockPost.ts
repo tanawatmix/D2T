@@ -1,5 +1,5 @@
 import pic from "../views/assets/mimi.jpg";
-import pic1 from "../views/assets/nay.jpg";
+import pic1 from "../views/assets/tw2024_2.jpg";
 import pic2 from "../views/assets/twice1.png";
 
 
