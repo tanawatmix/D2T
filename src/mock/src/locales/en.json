@@ -1,9 +1,0 @@
-{
-  "place": "Place",
-  "home": "Home",
-  "register": "Register",
-  "login": "Login",
-  "logout": "Logout",
-  "profile": "Profile",
-  "hello_user": "Hello, {{name}}"
-}

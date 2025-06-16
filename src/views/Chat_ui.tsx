@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect, useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
+import React from "react";
 
 import pic from "./assets/picture.png";
 import send from "./assets/send.png";

@@ -3,6 +3,7 @@ import { ThemeContext } from "../ThemeContext";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
+import React from "react";
 import { BsCardImage } from "react-icons/bs";
 import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/wp.jpg"; // Background image

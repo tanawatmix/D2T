@@ -2,6 +2,7 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import { ThemeContext } from "../ThemeContext";
+import React from "react";
 import { useContext } from "react";
 import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/wp.jpg"; // Background image

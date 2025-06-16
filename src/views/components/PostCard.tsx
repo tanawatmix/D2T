@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import React from "react";
 // import mockPosts from "../../mock/mockPost";
 // import {  useContext } from "react";
 // import { ThemeContext } from "../../themeContext";
 
 // import bg from "./../assets/bg2.jpg"
+
+import fallbackImage from "../assets/dremovebg-1.png"; // รูป fallback
+
 
 interface PostCardProps {
   images: string[];
@@ -31,16 +35,19 @@ const PostCard = ({
     });
   };
   const coverImage =
-    images && images.length > 0 ? images[0] : "URL/to/your/default/image.png";
+    images && images.length > 0 ? images[0] : fallbackImage;
   return (
     <div
-      className="bg-white dark:bg-gray-800 hover:scale-105 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+      className="bg-white dark:bg-secondary hover:scale-105 rounded-lg shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
       onClick={handleCardClick}
     >
       <img
         src={coverImage}
         alt={title}
-        className="w-full h-48 object-cover rounded-t-lg"
+        className="w-full h-48 object-contain rounded-t-lg"
+        onError={(e) => {
+        (e.target as HTMLImageElement).src = fallbackImage;
+        }}
       />
       <div className="p-4">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">

@@ -119,7 +119,7 @@ const mockPosts: Post[] = [
     },
     {
         postId: 14,
-        images: [pic, pic1],
+        images: [],
         title: "คาเฟ่สไตล์วินเทจ",
         type: "ร้านอาหาร",
         province: "กรุงเทพมหานคร",

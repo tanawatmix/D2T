@@ -2,8 +2,9 @@ import { useState, useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import bp from "./assets/bp.jpg"; // Background image
-import wp from "./assets/wp.jpg"; // Background image
+import React from "react";
+import bp from "./assets/fire1.jpg"; // Background image
+import wp from "./assets/whiteWater.jpg"; // Background image
 
 import mockPosts from "../mock/mockPost";
 
@@ -232,7 +233,7 @@ const PostPage = () => {
           </Drawer>
 
           {/* Posts */}
-          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             {currentPosts.length === 0 ? (
               <div className="col-span-full text-center text-gray-500 text-xl">
                 ไม่พบโพสต์ที่ตรงกับตัวกรอง

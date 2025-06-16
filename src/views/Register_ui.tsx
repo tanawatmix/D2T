@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../ThemeContext";
 import { FaGoogle, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";

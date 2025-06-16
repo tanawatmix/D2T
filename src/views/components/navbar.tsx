@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, type Dispatch, type SetStateAction } from "react";
 import { FiMenu, FiX, FiUser, FiMoon, FiSun } from "react-icons/fi";
-import logo from "./../assets/D2T2.png";
+import logo from "../assets/dremovebg-1.png";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "../../ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";

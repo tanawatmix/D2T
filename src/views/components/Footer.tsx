@@ -1,6 +1,7 @@
 // src/components/Footer.tsx
 import { FaGithub } from "react-icons/fa";
 import { ThemeContext } from "../../ThemeContext";
+import React from "react";
 import { useContext } from "react";
 
 const Footer = () => {
