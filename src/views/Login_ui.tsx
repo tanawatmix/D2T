@@ -213,7 +213,7 @@ const Login: React.FC = () => {
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
-              className="fixed top-8 left-1/2 -translate-x-1/2 bg-red-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg text-center z-50"
+              className="fixed translate-x-1/2 bg-red-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg text-center z-50"
             >
               {t.fillAll}
             </motion.div>
