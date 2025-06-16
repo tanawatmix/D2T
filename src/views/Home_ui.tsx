@@ -1,7 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
-import { motion, useMotionValue, PanInfo } from "framer-motion";
+import React from "react";
+import { useContext, useState, useEffect } from "react";
+import { motion, useMotionValue } from "framer-motion";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
+// import { useNavigate } from "react-router-dom";
 
 import { ThemeContext } from "../ThemeContext";
 
@@ -22,10 +24,11 @@ const images = [
   "https://f.ptcdn.info/769/044/000/ob1ahrm9zPblJUdIXnV-o.jpg",
 ];
 
-const HomeUI: React.FC = () => {
+const HomeUI = () => {
   const { darkMode } = useContext(ThemeContext);
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [imgIndex, setImgIndex] = useState<number>(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Carousel state and animation setup
+  const [imgIndex, setImgIndex] = useState(0);
   const dragX = useMotionValue(0);
   const SPRING_OPTIONS = {
     type: "spring" as const,
@@ -33,7 +36,7 @@ const HomeUI: React.FC = () => {
     damping: 30,
   };
 
-  const onDragEnd = (_event: MouseEvent | TouchEvent, info: PanInfo) => {
+  const onDragEnd = (info: any) => {
     if (info.offset.x < -100 && imgIndex < images.length - 1) {
       setImgIndex((prev) => prev + 1);
     } else if (info.offset.x > 100 && imgIndex > 0) {
@@ -47,28 +50,32 @@ const HomeUI: React.FC = () => {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
+  // Allow setImgIndex to accept both updater and direct value
   const setImgIndexSafe = (value: number | ((prev: number) => number)) => {
     if (typeof value === "function") {
-      setImgIndex(value);
+      setImgIndex(value as (prev: number) => number);
     } else {
       setImgIndex(value);
     }
   };
 
-
-
   return (
-     <div
+    <div
       className={`relative min-h-screen transition duration-500 ${
         darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
       }`}
       style={{
-        backgroundImage: `radial-gradient(circle 300px at ${mousePosition.x}px ${mousePosition.y}px, ${
+        backgroundImage: `radial-gradient(circle 300px at ${
+          mousePosition.x
+        }px ${mousePosition.y}px, ${
           darkMode ? "rgba(184, 70, 255, 0.5)" : "rgba(255, 144, 153, 0.5)"
-        }, transparent 50%)`,
+        }, transparent 50%), url(${darkMode ? bp : wp})`,
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
