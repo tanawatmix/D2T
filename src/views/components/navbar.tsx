@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FiMenu, FiX, FiUser, FiMoon, FiSun } from "react-icons/fi";
 import logo from "../assets/dare2New.png";
 import { useTranslation } from "react-i18next";
@@ -111,7 +105,7 @@ const Navbar: React.FC = () => {
                 to="/profile"
                 className="flex items-center bg-[length:200%_auto] animate-gradient-anim "
               >
-                <FiUser className="mr-1 text-xl text-secondary dark:text-white dark:text-primary " />
+                <FiUser className="mr-1 text-xl text-secondary dark:text-white " />
                 {t("hello_ฮี้ย้า", { name: user?.username })}
               </NavButton>
             </>
