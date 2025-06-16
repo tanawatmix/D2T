@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const TOGGLE_CLASSES =
-    "text-sm font-medium flex items-center gap-2 px-3 md:pl-3 md:pr-3.5 py-3 md:py-1.5 transition-colors relative z-10";
+    "text-sm font-medium font-sriracha flex items-center gap-2 px-3 md:pl-3 md:pr-3.5 py-3 md:py-1.5 transition-colors relative z-10";
 
   type ToggleOptionsType = "light" | "dark";
 
@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
   }: React.ButtonHTMLAttributes<HTMLButtonElement> & { to: string }) => (
     <button
       onClick={() => (window.location.href = to)}
-      className={`transition duration-300 font-bold px-2 py-1 rounded hover:bg-gradient-to-r hover:from-pink-400 hover:to-orange-200 ${
+      className={`font-sriracha transition duration-300 font-bold px-2 py-1 rounded hover:bg-gradient-to-r hover:from-pink-400 hover:to-orange-200 ${
         darkMode
           ? "bg-gradient-to-r from-blue-500 via-purple-300 to-pink-400 bg-clip-text text-transparent"
           : "bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent"
@@ -81,7 +81,7 @@ const handleLogout = () => {
         >
           <img src={logo} alt="logo" className="h-10 w-20 object-contain" />
           <span
-            className={`ml-2 text-xl font-extrabold tracking-tight bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent select-none bg-[length:200%_auto] animate-gradient-anim  ${
+            className={`font-sriracha ml-2 text-xl font-extrabold tracking-tight bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent select-none bg-[length:200%_auto] animate-gradient-anim  ${
               darkMode
                 ? "bg-gradient-to-r from-blue-500 via-purple-300 to-pink-400"
                 : ""

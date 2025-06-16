@@ -99,7 +99,7 @@ const HomeUI = () => {
 
           {/* Description */}
           <div
-            className={`max-w-3xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-8 mt-4 mb-8 transition duration-500`}
+            className={`font-sriracha max-w-3xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-8 mt-4 mb-8 transition duration-500`}
           >
             <p className="text-xl font-bold text-center mb-4">
               Dare2Thai
@@ -216,7 +216,7 @@ const HomeUI = () => {
             className={`max-w-4xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-8 mt-16 mb-20 transition duration-500`}
           >
             <h2
-              className={`text-2xl font-bold mb-4 text-center bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent ${
+              className={`font-sriracha text-2xl font-bold mb-4 text-center bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent ${
                 darkMode
                   ? "from-blue-500 via-purple-300 to-pink-400"
                   : "from-pink-500 via-pink-400 to-orange-300"
@@ -224,7 +224,7 @@ const HomeUI = () => {
             >
               สัมผัสเสน่ห์แบบประเทศไทย
             </h2>
-            <p className="text-base text-center">
+            <p className="font-sriracha text-base text-center">
               ประเทศไทยถือเป็นหนึ่งในจุดหมายปลายทางยอดนิยมของนักท่องเที่ยวทั่วโลก
               ด้วยความหลากหลายทางวัฒนธรรม ธรรมชาติที่งดงาม
               และอาหารที่มีรสชาติอร่อยเลิศ

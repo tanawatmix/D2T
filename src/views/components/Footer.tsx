@@ -6,7 +6,7 @@ import { useContext } from "react";
 const Footer = () => {
   const { darkMode } = useContext(ThemeContext);
   return (
-    <footer className="dark:bg-secondary bg-primary mt-auto border-t transition duration-500  border-blue-400 dark:border-pink-400 ">
+    <footer className="dark:bg-secondary font-sriracha bg-primary mt-auto border-t transition duration-500  border-blue-400 dark:border-pink-400 ">
       <div className="container  px-3 py-4 flex flex-col md:flex-row justify-between items-center">
         <div className="md-flex mb-1">
           <h2
