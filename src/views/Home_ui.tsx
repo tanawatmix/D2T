@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 
 import { ThemeContext } from "../ThemeContext";
 
-import D2T2 from "./assets/D2win.png"; // Logo image
+import D2T2 from "./assets/dremovebg-1.png";
 import bp from "./assets/fire1.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; // Background image
 // import { div, i } from "framer-motion/client";
