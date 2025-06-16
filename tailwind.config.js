@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FFFF", // Blue
+        primary: "#FFFFFF", // Blue
         secondary: "#6f6968", // Yellow
         accent: "#808080", // Red
         neutral: " #808080", // Gray
@@ -20,7 +20,7 @@ export default {
       },
       // เพิ่มชื่อ animation เพื่อเรียกใช้
       animation: {
-        "gradient-anim": "gradient-anim 4s ease infinite",
+        "gradient-anim": "gradient-anim 5s ease infinite",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
