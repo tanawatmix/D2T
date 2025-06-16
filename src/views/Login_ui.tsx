@@ -195,27 +195,32 @@ const Login: React.FC = () => {
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
-              className="fixed top-8 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 text-white font-bold px-8 py-4 rounded-xl shadow-lg text-center z-50"
+              className=" inset-0 flex justify-center pointer-events-none z-50 px-4"
             >
-              {t.success}
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 1, ease: "linear" }}
-                className="h-1 bg-white mt-3 rounded-lg"
-              />
+              <div className="mt-10 pointer-events-auto bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-md text-center w-full max-w-sm">
+                {t.success}
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 1, ease: "linear" }}
+                  className="h-1 bg-white mt-2 rounded-lg"
+                />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
+
         <AnimatePresence>
           {showError && (
             <motion.div
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
-              className="fixed top-8 left-1/2 -translate-x-1/2 bg-red-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg text-center z-50"
+              className=" inset-0 flex justify-center pointer-events-none z-50 px-4"
             >
-              {t.fillAll}
+              <div className="mt-10 pointer-events-auto bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-md text-center w-full max-w-sm">
+                {t.fillAll}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
