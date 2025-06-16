@@ -216,11 +216,7 @@ const Login: React.FC = () => {
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
-<<<<<<< HEAD
               className=" inset-0 flex justify-center pointer-events-none z-50 px-4"
-=======
-              className="fixed translate-x-1/2 bg-red-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg text-center z-50"
->>>>>>> 975054b18c9a4fce51eda5ce24dd439aaf4793d7
             >
               <div className="mt-10 pointer-events-auto bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-md text-center w-full max-w-sm">
                 {t.fillAll}
