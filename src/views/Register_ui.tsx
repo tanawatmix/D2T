@@ -3,7 +3,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../ThemeContext";
 import { FaGoogle, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import bp from "./assets/fire1.jpg"; // Background image
+import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; // Background image
 
 const Login: React.FC = () => {
@@ -76,9 +76,9 @@ const Login: React.FC = () => {
       }}
     >
       <div className="relative min-h-screen flex items-center justify-center px-4">
-        <div className="border-2 bg-primary dark:bg-gray-800 border-blue-400 dark:border-white rounded-2xl shadow-2xl p-8 max-w-4xl w-full relative backdrop-blur-md flex flex-col md:flex-row gap-8">
+        <div className="border-2 bg-primary-opacity-50 dark:bg-black-opacity-50 border-blue-400 dark:border-white rounded-2xl shadow-2xl p-8 max-w-4xl w-full relative backdrop-blur-md flex flex-col md:flex-row gap-8">
           {/* Left: Social Buttons */}
-          <div className="flex-1 flex flex-col justify-center items-center gap-6 border-r-0 md:border-r md:pr-8 border-blue-200">
+          <div className="flex-1 flex flex-col justify-center items-center gap-6 border-r-0 md:border-r md:pr-8 border-blue-400">
             <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">
               {lang === "th" ? "สมัครด้วย" : "Sign up with"}
             </h3>

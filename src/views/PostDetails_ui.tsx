@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import { ThemeContext } from "../ThemeContext";
 import React from "react";
 import { useContext } from "react";
-import bp from "./assets/fire1.jpg"; // Background image
+import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; 
 
 const PostDetailsUI = () => {

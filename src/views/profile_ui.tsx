@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../ThemeContext";
 import Cropper from "react-easy-crop";
 import type { Area } from "react-easy-crop";
-import getCroppedImg from "../../src/views/assets/utils/cropImage"; // ฟังก์ชันสำหรับครอปภาพ
+import getCroppedImg from "./utils/cropImage"; // ฟังก์ชันสำหรับครอปภาพ
 import Profile from "./assets/nay.jpg";
 // import bg from "./assets/bg2.jpg";
 import Navbar from "./components/navbar";
@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import Slider from "@mui/material/Slider";
 import Modal from "@mui/material/Modal";
 
-import bp from "./assets/fire1.jpg"; // Background image
+import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; 
 
 const ProfileUI = () => {

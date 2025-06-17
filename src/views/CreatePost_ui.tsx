@@ -5,7 +5,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import React from "react";
 import { BsCardImage } from "react-icons/bs";
-import bp from "./assets/fire1.jpg"; // Background image
+import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; 
 
 

@@ -5,7 +5,7 @@ import React from "react";
 
 import pic from "./assets/picture.png";
 import send from "./assets/send.png";
-import bp from "./assets/fire1.jpg"; // Background image
+import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; 
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";

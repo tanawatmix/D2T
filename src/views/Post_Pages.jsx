@@ -1,9 +1,8 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ThemeContext } from "../ThemeContext";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
 import React from "react";
-import bp from "./assets/fire1.jpg"; // Background image
+import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; // Background image
 
 import mockPosts from "../mock/mockPost";
@@ -16,7 +15,7 @@ import { FaPlus, FaSearch } from "react-icons/fa";
 import Drawer from "@mui/material/Drawer";
 
 const PostPage = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false); /*  */
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,7 +41,7 @@ const PostPage = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-  const toggleDrawer = (open: boolean) => () => setIsDrawerOpen(open);
+  const toggleDrawer = (open) => () => setIsDrawerOpen(open);
 
   const placeTypes = ["ร้านอาหาร", "สถานที่ท่องเที่ยว", "โรงแรม"];
   const provinces = [
@@ -133,7 +132,7 @@ const PostPage = () => {
     setCurrentPage(1);
     setIsDrawerOpen(false);
   };
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page) => {
     setSearchParams({ page: String(page) });
   };
 
@@ -154,7 +153,7 @@ const PostPage = () => {
         <div className="max-w-7xl mx-auto px-4 py-20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
             <button
-              onClick={() => window.location.href = "/create-post"}
+              onClick={() => (window.location.href = "/create-post")}
               className="flex items-center gap-2 border-2 border-blue-400 dark:border-pink-500 rounded-lg bg-primary text-black dark:bg-secondary dark:text-primary px-6 py-2 font-semibold shadow hover:bg-secondary hover:text-white dark:hover:bg-primary dark:hover:text-secondary transition-all duration-300"
             >
               <FaPlus />
@@ -175,7 +174,7 @@ const PostPage = () => {
             open={isDrawerOpen}
             onClose={toggleDrawer(false)}
           >
-            <div className="w-[320px] p-6 space-y-6 bg-primary dark:bg-secondary h-full overflow-y-auto">
+            <div className="font-sriracha w-[320px] p-6 space-y-6 bg-primary dark:bg-secondary h-full overflow-y-auto">
               <h2 className="text-2xl font-bold text-secondary dark:text-primary mb-4">
                 ค้นหาโพสต์
               </h2>
@@ -239,14 +238,14 @@ const PostPage = () => {
                 ไม่พบโพสต์ที่ตรงกับตัวกรอง
               </div>
             ) : (
-              currentPosts.map((post: (typeof mockPosts)[number], idx) => (
+              currentPosts.map((post, idx) => (
                 <PostCard
                   key={idx}
-                  images={post.images} // ส่ง array ของรูปภาพ
+                  images={post.images}
                   title={post.title}
                   type={post.type}
                   province={post.province}
-                  postId={idx} // ส่ง index เป็น id
+                  postId={idx}
                   description={post.description}
                 />
               ))
@@ -257,20 +256,37 @@ const PostPage = () => {
           <div className="flex justify-center items-center gap-2 mt-8">
             {currentPage > 1 && (
               <>
-                <button onClick={() => handlePageChange(1)} className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400">{'<<'}</button>
-                <button onClick={() => handlePageChange(currentPage - 1)} className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400">{'<'}</button>
+                <button
+                  onClick={() => handlePageChange(1)}
+                  className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400"
+                >
+                  {"<<"}
+                </button>
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400"
+                >
+                  {"<"}
+                </button>
               </>
             )}
 
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              const startPage = Math.max(1, Math.min(currentPage - 2, totalPages - 4));
+              const startPage = Math.max(
+                1,
+                Math.min(currentPage - 2, totalPages - 4)
+              );
               const pageNumber = i + startPage;
               if (pageNumber > totalPages) return null;
               return (
                 <button
                   key={pageNumber}
                   onClick={() => handlePageChange(pageNumber)}
-                  className={`px-3 py-1 rounded border dark:border-pink-400 border-blue-400 hover:bg-blue-400 dark:hover:bg-pink-400 ${currentPage === pageNumber ? "bg-blue-400 dark:bg-pink-400 text-white dark:text-secondary" : "bg-pink dark:bg-secondary"}`}
+                  className={`px-3 py-1 rounded border dark:border-pink-400 border-blue-400 hover:bg-blue-400 dark:hover:bg-pink-400 ${
+                    currentPage === pageNumber
+                      ? "bg-blue-400 dark:bg-pink-400 text-white dark:text-secondary"
+                      : "bg-pink dark:bg-secondary"
+                  }`}
                 >
                   {pageNumber}
                 </button>
@@ -279,8 +295,18 @@ const PostPage = () => {
 
             {currentPage < totalPages && (
               <>
-                <button onClick={() => handlePageChange(currentPage + 1)} className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400">{'>'}</button>
-                <button onClick={() => handlePageChange(totalPages)} className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400">{'>>'}</button>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400"
+                >
+                  {">"}
+                </button>
+                <button
+                  onClick={() => handlePageChange(totalPages)}
+                  className="px-2 py-1 rounded border border-blue-400 dark:border-pink-400"
+                >
+                  {">>"}
+                </button>
               </>
             )}
           </div>

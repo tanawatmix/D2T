@@ -3,15 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../ThemeContext";
 import React from "react";
-import bp from "./assets/fire1.jpg"; // Background image
+import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; // Background image
 
-const Login: React.FC = () => {
+const Login = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [lang, setLang] = useState<"th" | "en">("th");
+  const [lang, setLang] = useState("th");
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const translations = {
@@ -83,10 +83,10 @@ const Login: React.FC = () => {
     >
       <div className="relative min-h-screen flex items-center justify-center px-4 w-full">
         <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1.1, opacity: 1 }}
           transition={{ duration: 0.4, type: "spring" }}
-          className="bg-primary dark:bg-secondary border-2 border-blue-400 dark:border-white shadow-2xl rounded-3xl p-10 max-w-md w-full relative backdrop-blur-lg"
+          className="bg-primary-opacity-50 dark:bg-secondary-opacity-50 border-2 border-blue-400 dark:border-white shadow-2xl rounded-3xl p-10 max-w-md w-full relative backdrop-blur-lg"
         >
           {/* Language & Theme Switcher */}
           <div className="absolute top-4 right-4 flex flex-col items-end gap-2 z-10">
@@ -144,7 +144,7 @@ const Login: React.FC = () => {
               <input
                 type="email"
                 id="email"
-                className="w-full p-3 border-2 border-blue-200 dark:border-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
+                className="w-full p-3 border-2 border-blue-400 dark:border-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
                 placeholder={t.email}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -160,7 +160,7 @@ const Login: React.FC = () => {
               <input
                 type="password"
                 id="password"
-                className="w-full p-3 border-2 border-blue-200 dark:border-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
+                className="w-full p-3 border-2 border-blue-400 dark:border-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-pink-400 transition bg-white/80 dark:bg-gray-800/80"
                 placeholder={t.password}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
