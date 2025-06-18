@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FiMenu, FiX, FiUser, FiMoon, FiSun } from "react-icons/fi";
 import logo from "../assets/dare2New.png";
+import bg from "../assets/whiteWater.jpg";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "../../ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -66,7 +67,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="font-sriracha border-b border-blue-400 dark:border-white bg-primary dark:bg-secondary py-4 px-6 fixed w-full z-50 shadow transition duration-500">
+    <nav className="font-sriracha border-b border-blue-400 dark:border-white bg-primary dark:bg-secondary  py-4 px-6 fixed w-full z-50 shadow transition duration-500">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div
