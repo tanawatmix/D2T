@@ -2,24 +2,24 @@ import React, { useState, useCallback, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../ThemeContext";
 import Cropper from "react-easy-crop";
-import type { Area } from "react-easy-crop";
 import getCroppedImg from "./utils/cropImage"; // ฟังก์ชันสำหรับครอปภาพ
 import Profile from "./assets/nay.jpg";
-// import bg from "./assets/bg2.jpg";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import Slider from "@mui/material/Slider";
 import Modal from "@mui/material/Modal";
+import { useTranslation } from "react-i18next";
 
-import bp from "./assets/bp.jpg"; // Background image
-import wp from "./assets/whiteWater.jpg"; 
+import bp from "./assets/bp.jpg";
+import wp from "./assets/whiteWater.jpg";
 
 const ProfileUI = () => {
+  const { t } = useTranslation();
   const [avatar, setAvatar] = useState(Profile);
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [imageSrc, setImageSrc] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const { darkMode } = useContext(ThemeContext);
@@ -28,7 +28,7 @@ const ProfileUI = () => {
     setShowSuccess(true);
     setTimeout(() => {
       setShowSuccess(false);
-    }, 1000); // แสดง 2 วินาทีก่อนเปลี่ยนหน้า
+    }, 1000);
   };
 
   const [form, setForm] = useState({
@@ -38,16 +38,16 @@ const ProfileUI = () => {
     confirmPassword: "",
   });
 
-  const onCropComplete = useCallback((_: Area, croppedAreaPixels: Area) => {
+  const onCropComplete = useCallback((_, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
-  const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageSelect = (event) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.addEventListener("load", () => {
-        setImageSrc(reader.result as string);
+        setImageSrc(reader.result);
         setOpen(true);
       });
       reader.readAsDataURL(file);
@@ -62,25 +62,23 @@ const ProfileUI = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
     <div
       className="font-sriracha text-black relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
-      style={{
-        backgroundImage: `url(${darkMode ? bp : wp})`,
-      }}
+      style={{ backgroundImage: `url(${darkMode ? bp : wp})` }}
     >
       <Navbar />
       <div className="flex justify-center pt-20 pb-10">
         <div className="bg-primary-opacity-50 backdrop-blur-lg border-2 border-blue-400 dark:border-pink-400 dark:bg-secondary-opacity-50 dark:text-primary font-bold p-8 rounded-md shadow-md w-full max-w-2xl">
           <h2 className="text-xl font-semibold mb-2 underline text-center">
-            Your Personal Information
+            {t("YourProfile")}
           </h2>
 
-          <div className="flex items-center justify-center mt-4 mb-4 ">
+          <div className="flex items-center justify-center mt-4 mb-4">
             <img
               src={avatar}
               className="w-40 h-40 rounded-2xl border border-blue-400 text-secondary dark:border-pink-400 object-cover"
@@ -96,17 +94,18 @@ const ProfileUI = () => {
               />
             </div>
           </div>
+
           <div className="flex justify-center">
             <label
               htmlFor="avatar-upload"
               className="bg-primary dark:bg-secondary dark:hover:bg-primary dark:hover:text-secondary text-secondary dark:text-primary px-1 py-2 rounded cursor-pointer hover:bg-secondary hover:text-white transition border border-blue-400 text-secondary dark:border-pink-400"
             >
-              Change avatar
+              {t("ChangAvatar")}
             </label>
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm mb-1">Username</label>
+            <label className="block text-sm mb-1">{t("Username")}</label>
             <input
               maxLength={15}
               type="text"
@@ -118,7 +117,7 @@ const ProfileUI = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm mb-1">Email address</label>
+            <label className="block text-sm mb-1">{t("Email")}</label>
             <input
               type="email"
               name="email"
@@ -129,7 +128,7 @@ const ProfileUI = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm mb-1">Password</label>
+            <label className="block text-sm mb-1">{t("Pass")}</label>
             <input
               type="password"
               name="password"
@@ -140,7 +139,7 @@ const ProfileUI = () => {
           </div>
 
           <div className="mb-6">
-            <label className="block text-sm mb-1">Confirm Password</label>
+            <label className="block text-sm mb-1">{t("ConPass")}</label>
             <input
               type="password"
               name="confirmPassword"
@@ -151,16 +150,16 @@ const ProfileUI = () => {
           </div>
 
           <button
-            className="bg-primary dark:bg-secondary border-blue-400 dark:border-pink-400 text-secondary dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 ml-2 rounded transition border"
+            className="bg-green-500 dark:bg-green-400 border-blue-400 dark:border-pink-400 text-secondary dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 ml-2 rounded transition border"
             onClick={handleSaveEdit}
           >
-            Save
+            {t("save")}
           </button>
           <button
-            className="bg-primary dark:bg-secondary border-blue-400 text-secondary dark:border-pink-400 dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 ml-2 rounded transition border"
+            className="bg-red-500 dark:bg-red-400    border-blue-400 text-secondary dark:border-pink-400 dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 ml-2 rounded transition border"
             onClick={() => (window.location.href = "/home")}
           >
-            back
+            {t("back")}
           </button>
         </div>
       </div>
@@ -187,7 +186,7 @@ const ProfileUI = () => {
             min={1}
             max={3}
             step={0.1}
-            onChange={(_e, z) => setZoom(z as number)}
+            onChange={(_e, z) => setZoom(z)}
             className="mt-4"
           />
           <div className="mt-4 flex justify-between">
@@ -199,31 +198,14 @@ const ProfileUI = () => {
             </button>
             <button
               onClick={handleSaveImage}
-              className="bg-blue-500 text-white px-4  py-2 rounded"
+              className="bg-blue-500 text-white px-4 py-2 rounded"
             >
               Save
             </button>
           </div>
-          <AnimatePresence>
-            {showSuccess && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 10, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="absolute top-10 bg-primary border-2 border-dashed border-black text-white bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 font-bold px-6 py-3 rounded-lg shadow-lg text-center"
-              >
-                ✅ ลงทะเบียนสำเร็จ!
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 1, ease: "linear" }}
-                  className="h-1 bg-white mt-3 rounded-lg"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </Modal>
+
       <AnimatePresence>
         {showSuccess && (
           <motion.div

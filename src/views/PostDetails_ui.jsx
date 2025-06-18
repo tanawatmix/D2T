@@ -6,32 +6,16 @@ import React from "react";
 import { useContext } from "react";
 import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; 
+import { useTranslation } from "react-i18next";
 
 const PostDetailsUI = () => {
+  const { t } = useTranslation();
   const { state } = useLocation();
   const { postId } = useParams();
   const navigate = useNavigate();
   const { darkMode } = useContext(ThemeContext);
 
-  if (!state) {
-    return (
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <div className="flex-grow flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-          <div className="text-center text-gray-700 dark:text-gray-200">
-            ไม่พบข้อมูลโพสต์
-            <button
-              onClick={() => navigate("/Posts")}
-              className="block mx-auto mt-6 px-6 py-2 rounded bg-primary text-white hover:bg-accent dark:bg-secondary dark:hover:bg-primary"
-            >
-              กลับไปหน้ารายการโพสต์
-            </button>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  
 
   const { title, images, type, province, description } = state;
 
@@ -47,7 +31,7 @@ const PostDetailsUI = () => {
         <div className="max-w-2xl mx-auto bg-primary-opacity-50 dark:bg-secondary dark:bg-opacity-50 border border-blue-400 dark:border-pink-400 p-10 rounded-3xl mt-20 mb-8 shadow-xl backdrop-blur-lg">
           {/* รูปภาพทั้งหมด */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-            {images.map((image: string, index: number) => (
+            {images.map((image, index) => (
               <div
           key={index}
           className="aspect-square flex items-center justify-center bg-primary dark:bg-secondary rounded-xl overflow-hidden border border-blue-300 dark:border-pink-300 shadow-md hover:scale-105 transition-transform"
@@ -77,13 +61,13 @@ const PostDetailsUI = () => {
               onClick={() => navigate(`/chat/${postId}`, { state: { title } })}
               className="w-full py-3 border border-blue-400 dark:border-pink-400 rounded-lg bg-primary dark:bg-secondary text-secondary font-semibold shadow hover:bg-accent dark:hover:bg-primary dark:hover:text-secondary dark:text-white transition"
             >
-              เข้าสู่พูดคุย
+              {t("join")}
             </button>
             <button
               onClick={() => navigate("/Posts")}
               className="w-full py-3 border border-blue-400 dark:border-pink-400 rounded-lg bg-primary dark:bg-secondary text-secondary font-semibold shadow hover:bg-accent dark:hover:bg-primary dark:hover:text-secondary dark:text-white transition"
             >
-              กลับจุดรวมโพสต์
+              {t("back")}
             </button>
           </div>
         </div>

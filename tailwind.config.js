@@ -5,11 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FFFFFF", // Blue
-        secondary: "#000000", // Yellow
-        accent: "#808080", // Red
-        neutral: " #808080", // Gray
-        "base-100": "#FFFFFF", // White
+        primary: "#FFFFFF",
+        secondary: "#000000",
+        accent: "#808080",
+        neutral: " #808080",
+        "base-100": "#FFFFFF",
       },
       keyframes: {
         "gradient-anim": {
@@ -23,8 +23,7 @@ export default {
         "gradient-anim": "gradient-anim 5s ease infinite",
       },
       fontFamily: {
-        
-        sriracha: ['Sriracha', 'cursive'],
+        sriracha: ["Sriracha", "cursive"],
       },
       backgroundImage: {
         "light-bg":

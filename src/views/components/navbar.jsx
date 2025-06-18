@@ -6,14 +6,12 @@ import { ThemeContext } from "../../ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { changeLanguage } from "i18next";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<{ username: string; role: string } | null>(
-    null
-  );
+  const [user, setUser] = useState(null);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -29,15 +27,13 @@ const Navbar: React.FC = () => {
   const TOGGLE_CLASSES =
     "text-sm font-medium font-sriracha flex items-center gap-2 px-3 md:pl-3 md:pr-3.5 py-3 md:py-1.5 transition-colors relative z-10";
 
-  type ToggleOptionsType = "light" | "dark";
-
   // Helper for nav buttons
   const NavButton = ({
     to,
     children,
     className = "",
     ...props
-  }: React.ButtonHTMLAttributes<HTMLButtonElement> & { to: string }) => (
+  }) => (
     <button
       onClick={() => (window.location.href = to)}
       className={`font-sriracha transition duration-300 font-bold px-2 py-1 rounded hover:bg-gradient-to-r hover:from-pink-400 hover:to-orange-200  ${
@@ -50,9 +46,9 @@ const Navbar: React.FC = () => {
       {children}
     </button>
   );
-  const [selected, setSelected] = useState<ToggleOptionsType>("light");
+  const [selected, setSelected] = useState("light");
 
-  // sync selected toggle with current themeห
+  // sync selected toggle with current theme
   useEffect(() => {
     setSelected(darkMode ? "dark" : "light");
   }, [darkMode]);
@@ -62,7 +58,7 @@ const Navbar: React.FC = () => {
     localStorage.removeItem("user");
     setIsLoggedIn(false);
     setUser(null);
-    window.location.href = "/home"; // หรือ redirect ไปหน้าที่ต้องการ
+    window.location.href = "/home";
   };
 
   function toggleMenu() {
@@ -118,7 +114,7 @@ const Navbar: React.FC = () => {
 
           {/* Language Switch */}
           <select
-            onChange={(e) => changeLanguage(e.target.value as "en" | "th")}
+            onChange={(e) => changeLanguage(e.target.value)}
             value={i18n.language}
             className="border rounded px-2 py-1 text-black border-secondary dark:text-white dark:border-white dark:bg-secondary hover:text-secondary transition duration-300"
           >
@@ -204,7 +200,7 @@ const Navbar: React.FC = () => {
             )}
 
             <select
-              onChange={(e) => changeLanguage(e.target.value as "en" | "th")}
+              onChange={(e) => changeLanguage(e.target.value)}
               value={i18n.language}
               className="border rounded text-center px-2 py-1 text-black border-secondary dark:text-white dark:border-white dark:bg-secondary hover:text-secondary"
             >

@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { ThemeContext } from "../ThemeContext";
 import { useSearchParams } from "react-router-dom";
-import React from "react";
 import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; // Background image
 
@@ -13,30 +12,28 @@ import PostCard from "./components/PostCard";
 
 import { FaPlus, FaSearch } from "react-icons/fa";
 import Drawer from "@mui/material/Drawer";
+import { useTranslation } from "react-i18next";
 
 const PostPage = () => {
+  const { t } = useTranslation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = parseInt(searchParams.get("page") || "1", 10);
   const [currentPage, setCurrentPage] = useState(pageParam);
-
+  const [searchName, setSearchName] = useState("");
+  const posts = mockPosts;
+  const [filteredPosts, setFilteredPosts] = useState(posts);
   useEffect(() => {
     const page = parseInt(searchParams.get("page") || "1", 10);
     setCurrentPage(page);
   }, [searchParams]);
 
-  const posts = mockPosts;
-  const postsPerPage = 8;
-
-  const filteredPosts = posts.filter((post) => {
-    return (
-      (selectedType === "" || post.type === selectedType) &&
-      (selectedProvince === "" || post.province === selectedProvince)
-    );
-  });
-
+  const postsPerPage = 12;
+  useEffect(() => {
+    setFilteredPosts(posts);
+  }, []);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
@@ -129,9 +126,23 @@ const PostPage = () => {
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
   const handleSearch = () => {
+    const filtered = posts.filter((post) => {
+      const matchName =
+        searchName.trim() === "" ||
+        (post.title || "").toLowerCase().includes(searchName.toLowerCase());
+
+      const matchType = selectedType === "" || post.type === selectedType;
+      const matchProvince =
+        selectedProvince === "" || post.province === selectedProvince;
+
+      return matchName && matchType && matchProvince;
+    });
+
+    setFilteredPosts(filtered);
     setCurrentPage(1);
-    setIsDrawerOpen(false);
+    toggleDrawer(false)(); // ปิด Drawer หลังค้นหา
   };
+
   const handlePageChange = (page) => {
     setSearchParams({ page: String(page) });
   };
@@ -157,14 +168,14 @@ const PostPage = () => {
               className="flex items-center gap-2 border-2 border-blue-400 dark:border-pink-500 rounded-lg bg-primary text-black dark:bg-secondary dark:text-primary px-6 py-2 font-semibold shadow hover:bg-secondary hover:text-white dark:hover:bg-primary dark:hover:text-secondary transition-all duration-300"
             >
               <FaPlus />
-              โพสต์
+              <p>{t("post")}</p>
             </button>
             <button
               onClick={toggleDrawer(true)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-white dark:bg-primary dark:text-secondary hover:bg-pink-400 dark:hover:bg-pink-400 transition-all duration-300 shadow"
             >
               <FaSearch className="text-xl" />
-              <span className="hidden md:inline">ค้นหา</span>
+              <span className="hidden md:inline">{t("search")}</span>
             </button>
           </div>
 
@@ -176,11 +187,34 @@ const PostPage = () => {
           >
             <div className="font-sriracha w-[320px] p-6 space-y-6 bg-primary dark:bg-secondary h-full overflow-y-auto">
               <h2 className="text-2xl font-bold text-secondary dark:text-primary mb-4">
-                ค้นหาโพสต์
+                {t("search")}
               </h2>
+
+              {/* ชื่อสถานที่ */}
               <div>
                 <label className="block mb-1 text-sm font-medium text-secondary dark:text-primary">
-                  Tagประเภทสถานที่
+                  {t("PlaceName")}
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-300"
+                  value={searchName}
+                  onChange={(e) => setSearchName(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleSearch();
+                      toggleDrawer(false)();
+                    }
+                  }}
+                  placeholder="เช่น วัดพระแก้ว"
+                />
+              </div>
+
+              {/* ประเภท */}
+              <div>
+                <label className="block mb-1 text-sm font-medium text-secondary dark:text-primary">
+                  {t("Placetag")}
                 </label>
                 <select
                   className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -195,9 +229,11 @@ const PostPage = () => {
                   ))}
                 </select>
               </div>
+
+              {/* จังหวัด */}
               <div>
                 <label className="block mb-1 text-sm font-medium text-secondary dark:text-primary">
-                  Tagจังหวัด
+                  {t("Provincetag")}
                 </label>
                 <select
                   className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -212,17 +248,24 @@ const PostPage = () => {
                   ))}
                 </select>
               </div>
+
+              {/* ปุ่มค้นหา */}
               <button
                 onClick={handleSearch}
                 className="w-full bg-pink-400 hover:bg-secondary dark:hover:bg-primary hover:dark:text-secondary text-white font-semibold text-xl py-2 rounded shadow transition-all duration-300"
               >
-                เริ่มค้นหา
+                {t("search")}
               </button>
+
+              {/* ปุ่มล้างตัวกรอง */}
               <button
                 onClick={() => {
+                  setSearchName("");
                   setSelectedType("");
                   setSelectedProvince("");
                   setCurrentPage(1);
+                  setFilteredPosts(posts); // Reset โพสต์กลับทั้งหมด
+                  toggleDrawer(false)(); // ปิด Drawer ด้วย
                 }}
                 className="text-sm underline text-pink-400 dark:hover:text-primary hover:text-secondary"
               >

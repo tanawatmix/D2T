@@ -7,6 +7,7 @@ import React from "react";
 import { BsCardImage } from "react-icons/bs";
 import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; 
+import { useTranslation } from "react-i18next";
 
 
 
@@ -92,16 +93,17 @@ const provinces = [
 ];
 
 const CreatePost = () => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [images, setImages] = useState<File[]>([]);
-  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [images, setImages] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
   const [placeType, setPlaceType] = useState("");
   const [province, setProvince] = useState("");
   const navigate = useNavigate();
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e) => {
     const files = e.target.files;
     if (!files) return;
     const selectedFiles = Array.from(files).slice(0, 5);
@@ -110,7 +112,7 @@ const CreatePost = () => {
     setImagePreviews(previews);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (placeType === "") {
         alert("กรุณาเลือกประเภทสถานที่");
@@ -139,7 +141,7 @@ const CreatePost = () => {
       <div className="py-28 from-white to-gray-100">
         <div className="max-w-md mx-auto p-5 bg-white dark:bg-secondary rounded-lg shadow-md border border-blue-400 dark:border-pink-400">
           <h2 className="text-xl font-semibold mb-4 text-center text-secondary dark:text-primary">
-            สร้างโพสต์ใหม่
+            {t("newPost")}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
@@ -192,7 +194,7 @@ const CreatePost = () => {
               className="w-full bg-primary text-xs px-10 w-14 justify-items-center dark:bg-secondary dark:text-primary border border-blue-400 dark:border-pink-400 text-secondary py-3 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition"
             >
               <BsCardImage className="text-2xl" />
-              เพิ่มรูปภาพ / สูงสุด 5 ภาพ
+              {t("addPho")}
             </button>
             <input
               id="image-upload"
@@ -219,9 +221,9 @@ const CreatePost = () => {
             <div>
               <button
                 type="submit"
-                className="w-1/3 bg-blue-500 text-white py-2 mr-1 ml-6 rounded hover:bg-blue-600 transition"
+                className="w-1/3 bg-blue-500 text-white py-2 mr-1 ml-6 rounded hover:bg-pink-400 transition"
               >
-                โพสต์
+                {t("post")}
               </button>
               <button
                 type="button"
@@ -234,18 +236,18 @@ const CreatePost = () => {
                   setPlaceType("");
                   setProvince("");
                 }}
-                className="w-1/3 mt-2 bg-red-500 text-white py-2 ml-20 rounded hover:bg-blue-600 transition"
+                className="w-1/3 mt-2 bg-red-500 text-white py-2 ml-20 rounded hover:bg-pink-400 transition"
               >
-                ยกเลิก
+                {t("canc")}
               </button>
                <button
                 type="button"
                 onClick={() => {
                   navigate(-1); // กลับไปหน้าก่อนหน้า
                 }}
-                className="w-full mt-2 bg-green-500 text-white py-2 rounded hover:bg-blue-600 transition"
+                className="w-full mt-2 bg-green-500 text-white py-2 rounded hover:bg-pink-400 transition"
               >
-                กลับไปหน้าก่อนหน้า
+                {t("back")}
               </button>
             </div>
           </form>

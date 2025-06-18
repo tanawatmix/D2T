@@ -10,6 +10,7 @@ import { ThemeContext } from "../ThemeContext";
 import D2T2 from "./assets/dare2New.png";
 import bp from "./assets/bp.jpg"; // Background image
 import wp from "./assets/whiteWater.jpg"; // Background image
+import { t } from "i18next";
 // import { div, i } from "framer-motion/client";
 
 const images = [
@@ -31,12 +32,12 @@ const HomeUI = () => {
   const [imgIndex, setImgIndex] = useState(0);
   const dragX = useMotionValue(0);
   const SPRING_OPTIONS = {
-    type: "spring" as const,
+    type: "spring",
     stiffness: 300,
     damping: 30,
   };
 
-  const onDragEnd = (info: any) => {
+  const onDragEnd = (info) => {
     if (info.offset.x < -100 && imgIndex < images.length - 1) {
       setImgIndex((prev) => prev + 1);
     } else if (info.offset.x > 100 && imgIndex > 0) {
@@ -45,7 +46,7 @@ const HomeUI = () => {
   };
 
   useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
+    const handleMouseMove = (event) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
     };
 
@@ -57,9 +58,9 @@ const HomeUI = () => {
   }, []);
 
   // Allow setImgIndex to accept both updater and direct value
-  const setImgIndexSafe = (value: number | ((prev: number) => number)) => {
+  const setImgIndexSafe = (value) => {
     if (typeof value === "function") {
-      setImgIndex(value as (prev: number) => number);
+      setImgIndex(value);
     } else {
       setImgIndex(value);
     }
@@ -89,13 +90,13 @@ const HomeUI = () => {
 
           <img src={D2T2} alt="D2T" className="w-64 h-42 mt-16 " />
           <h1
-            className={`font-sriracha text-6xl py-4 font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
+            className={`font-sriracha text-6xl py-4 px-20 font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
               darkMode
                 ? "from-blue-500 via-purple-300 to-pink-400"
                 : "from-pink-500 via-pink-400 to-orange-300"
             }`}
           >
-            ยินดีต้อนรับสู่Dare2Thai
+            {t("welcome_message")}
           </h1>
 
           {/* Description */}
@@ -103,18 +104,10 @@ const HomeUI = () => {
             className={`font-sriracha max-w-3xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-3 mb-8 transition duration-500`}
           >
             <p className="text-xl font-bold text-center mb-4">
-              Dare2Thai
-              เป็นแพลตฟอร์มที่เชื่อมโยงผู้คนที่รักการท่องเที่ยวและการสำรวจสถานที่ใหม่
-              ๆ ในประเทศไทย
+              {t("title")}
             </p>
             <p className=" text-base text-center mb-4">
-              เราเชื่อว่าการเดินทางไม่ใช่แค่การเปลี่ยนสถานที่
-              แต่คือการเปิดมุมมองใหม่ ๆ ให้กับชีวิต
-              ไม่ว่าคุณจะเป็นนักเดินทางสายลุย นักถ่ายภาพธรรมชาติ
-              หรือผู้ที่หลงใหลในวัฒนธรรมท้องถิ่น ที่นี่คือพื้นที่สำหรับคุณ
-              สำรวจเส้นทางลับ หมู่บ้านเล็ก ๆ ที่ยังไม่ถูกรุกล้ำด้วยนักท่องเที่ยว
-              และสัมผัสวิถีชีวิตที่แท้จริงของผู้คน ค้นพบจุดหมายใหม่ ๆ
-              ที่คุณอาจไม่เคยรู้ว่ามีอยู่บนแผนที่ของไทย
+              {t("title2")}
             </p>
 
             <div className="mx-auto h-20 w-full max-w-72 flex items-center justify-center">
@@ -125,10 +118,10 @@ const HomeUI = () => {
               >
                 <span className="relative overflow-hidden">
                   <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
-                    เริ่มต้นสำรวจ
+                    {t("go_join")}
                   </span>
                   <span className="absolute left-0 top-0 block translate-y-full transition-transform duration-300 text-10 group-hover:translate-y-0">
-                    ไปกันเลย~~
+                    {t("Letsgo")}
                   </span>
                 </span>
                 <svg
@@ -153,7 +146,7 @@ const HomeUI = () => {
             <button
               className="absolute hover:scale-150 left-0 top-1/2 -translate-y-1/2 z-20 bg-white/70 dark:bg-gray-800/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-black dark:text-white rounded-full p-3 shadow-lg transition"
               onClick={() =>
-                setImgIndexSafe((prev: number) =>
+                setImgIndexSafe((prev) =>
                   prev === 0 ? images.length - 1 : prev - 1
                 )
               }
@@ -186,7 +179,7 @@ const HomeUI = () => {
             <button
               className="absolute hover:scale-150 right-0 top-1/2 -translate-y-1/2 z-20 bg-white/70 dark:bg-gray-800/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-black dark:text-white rounded-full p-3 shadow-lg transition"
               onClick={() =>
-                setImgIndexSafe((prev: number) =>
+                setImgIndexSafe((prev) =>
                   prev === images.length - 1 ? 0 : prev + 1
                 )
               }
@@ -225,32 +218,25 @@ const HomeUI = () => {
                   : "from-pink-500 via-pink-400 to-orange-300"
               }`}
             >
-              สัมผัสเสน่ห์แบบประเทศไทย
+              {t("title3")}
             </h2>
             <p className="font-sriracha text-base text-center">
-              ประเทศไทยถือเป็นหนึ่งในจุดหมายปลายทางยอดนิยมของนักท่องเที่ยวทั่วโลก
-              ด้วยความหลากหลายทางวัฒนธรรม ธรรมชาติที่งดงาม
-              และอาหารที่มีรสชาติอร่อยเลิศ
-              ที่นี่คุณจะได้สัมผัสกับบรรยากาศที่อบอุ่นและเป็นมิตรจากคนไทยที่มีน้ำใจ
-              หากคุณชื่นชอบทะเล ชายหาดที่สวยงามของภูเก็ต กระบี่
-              และเกาะสมุยจะไม่ทำให้คุณผิดหวัง น้ำทะเลใสสีฟ้าคราม ทรายขาวละเอียด
-              เหมาะแก่การพักผ่อนและทำกิจกรรมทางน้ำ
-              สำหรับคนรักธรรมชาติและการผจญภัย
-              เชียงใหม่และเชียงรายในภาคเหนือจะพาคุณไปพบกับขุนเขาสูง
-              ป่าไม้เขียวขจี และวัฒนธรรมชนเผ่าที่น่าสนใจ
-              อย่าพลาดการเยี่ยมชมวัดโบราณและตลาดกลางคืนที่เต็มไปด้วยของฝากพื้นเมือง
-              ในกรุงเทพฯ เมืองหลวงที่เต็มไปด้วยความทันสมัยและวัฒนธรรมดั้งเดิม
-              คุณจะได้ชมวัดพระแก้ว พระบรมมหาราชวัง และตลาดน้ำที่มีสีสัน
-              รวมทั้งสถานที่ช้อปปิ้งและร้านอาหารหลากหลาย นอกจากนี้
-              อย่าลืมลิ้มลองอาหารไทยที่ขึ้นชื่อ เช่น ต้มยำกุ้ง ผัดไทย
-              แกงเขียวหวาน และส้มตำ ที่มีรสชาติจัดจ้านและสมดุลระหว่างเปรี้ยว
-              หวาน เผ็ด และเค็ม ประเทศไทยมีเทศกาลและประเพณีที่น่าสนใจตลอดทั้งปี
-              เช่น สงกรานต์ ลอยกระทง และงานวัฒนธรรมท้องถิ่น
-              ที่จะทำให้คุณได้สัมผัสวิถีชีวิตและความเชื่อของคนไทยอย่างแท้จริง
-              ไม่ว่าคุณจะมาเพื่อพักผ่อน ช้อปปิ้ง หรือเรียนรู้วัฒนธรรม
-              ไทยก็มีทุกอย่างให้ครบครัน
-              พร้อมบริการที่อบอุ่นและเป็นกันเองที่คุณจะประทับใจไม่รู้ลืม
+              {t("title4")}
             </p>
+           <div className="max-w-3xl mx-auto my-8 relative aspect-video rounded-xl overflow-hidden shadow-lg">
+  <iframe
+    className="w-full h-full"
+    src="https://www.youtube.com/embed/Y2KLfYr-UiQ?autoplay=1&mute=1"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+</div>
+              <p className="font-sriracha text-base text-center">
+                🔺🔺🔺🔺----------------------------------🔺🔺🔺🔺
+              </p>
+
           </div>
         </div>
         <Footer />

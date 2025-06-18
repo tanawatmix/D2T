@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect, useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import pic from "./assets/picture.png";
 import send from "./assets/send.png";
@@ -10,24 +11,20 @@ import wp from "./assets/whiteWater.jpg";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 
-type Message = {
-  type: "text" | "image" | "video";
-  content: string;
-};
-
 const ChatUI = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const title = location.state?.title ?? "ไม่ทราบชื่อโพสต์";
   const { darkMode } = useContext(ThemeContext);
 
   const navigate = useNavigate();
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
 
   const [showScrollButton, setShowScrollButton] = useState(false);
 
-  const chatContainerRef = useRef<HTMLDivElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const chatContainerRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const container = chatContainerRef.current;
@@ -77,7 +74,7 @@ const ChatUI = () => {
     }
   };
 
-  const handleMediaSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMediaSelect = (event) => {
     const file = event.target.files?.[0];
     if (file) {
       const mediaUrl = URL.createObjectURL(file);
@@ -99,7 +96,7 @@ const ChatUI = () => {
 
       <div className="flex-grow px-4 py-20 max-w-2xl mx-auto w-full">
         <h1 className="text-2xl font-bold mb-4 text-secondary dark:text-primary">
-          แชทสำหรับโพสต์: {title}
+          {t("Chatfor")} : {title}
         </h1>
 
         <div className="relative">
@@ -109,7 +106,7 @@ const ChatUI = () => {
             className="bg-white rounded shadow border border-blue-400 dark:border-pink-400 h-96 overflow-y-auto p-4 mb-4"
           >
             {messages.length === 0 ? (
-              <p className="text-gray-500 text-center">ยังไม่มีข้อความ</p>
+              <p className="text-gray-500 text-center">{t("Nomessage")}</p>
             ) : (
               messages.map((msg, index) => (
                 <div key={index} className="mb-2 text-right">
@@ -202,7 +199,7 @@ const ChatUI = () => {
           onClick={() => navigate(-1)}
           className="mt-6 border border-blue-400 dark:border-pink-400 w-full bg-white font-bold hover:bg-secondary hover:text-white text-black py-2 rounded"
         >
-          กลับ
+          {t("back")}
         </button>
       </div>
       <Footer />
