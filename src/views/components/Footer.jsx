@@ -32,7 +32,7 @@ const Footer = () => {
               href="tel:0649857665"
               className="underline hover:text-pink-400 transition"
             >
-              064-985-7665
+              088-888-8888
             </a>
           </p>
         </div>

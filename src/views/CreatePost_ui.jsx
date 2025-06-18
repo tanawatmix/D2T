@@ -243,7 +243,7 @@ const CreatePost = () => {
                <button
                 type="button"
                 onClick={() => {
-                  navigate(-1); // กลับไปหน้าก่อนหน้า
+                  navigate(-1); 
                 }}
                 className="w-full mt-2 bg-green-500 text-white py-2 rounded hover:bg-pink-400 transition"
               >

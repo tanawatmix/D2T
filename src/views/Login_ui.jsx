@@ -121,7 +121,7 @@ const Login = () => {
 
           {/* Back to Home Button */}
           <button
-            className="absolute left-4 top-4 bg-gradient-to-r from-blue-400 to-pink-400 text-white px-4 py-2 rounded-full shadow hover:scale-105 transition font-semibold"
+            className="absolute left-4 top-4 bg-gradient-to-r from-blue-400 to-pink-400 text-white px-4 py-2 rounded-full shadow hover:scale-125 hover:from-pink-400 hover:to-blue-400 transition font-semibold"
             onClick={() => navigate("/")}
           >
             {t.home}
@@ -170,7 +170,7 @@ const Login = () => {
 
             <motion.button
               whileTap={{ scale: 0.97 }}
-              className="bg-gradient-to-r from-blue-400 to-pink-400 text-white font-bold p-3 rounded-lg w-full shadow hover:from-pink-400 hover:to-blue-400 transition"
+              className="bg-gradient-to-r from-blue-400 to-pink-400  text-white font-bold p-3 rounded-lg w-full shadow hover:from-pink-400 hover:to-blue-400 transition"
               type="submit"
             >
               {t.login}

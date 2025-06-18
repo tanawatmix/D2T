@@ -107,12 +107,12 @@ const Register = () => {
               </button>
             </div>
             <button
-              className="absolute top-4 left-4 bg-pink-600 text-white py-2 px-4 rounded-full hover:from-black hover:to-orange-400 hover:text-white font-semibold shadow transition duration-300"
+              className="bg-gradient-to-r from-blue-400 to-pink-400 text-white font-bold p-3 rounded-full transition duration-200 w-20 shadow transition duration-800 top-4 left-4 absolute hover:scale-125"
               onClick={() => (window.location.href = "/")}
             >
               {t.home}
             </button>
-            <h3 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-pink-400 to-orange-400 mb-8 text-center drop-shadow">
+            <h3 className="text-3xl font-extrabold text-transparent bg-clip-text  bg-gradient-to-r from-blue-400 to-pink-400  mb-8 text-center drop-shadow">
               {t.title}
             </h3>
             <div className="flex items-center justify-center mt-1 mb-1">
@@ -123,7 +123,7 @@ const Register = () => {
               />
             </div>
             <div>
-              <button className="bg-gradient-to-r from-pink-400 to-orange-400 text-white font-bold p-3 rounded-lg hover:from-orange-400 hover:to-pink-400 w-full shadow transition duration-300">
+              <button className=" bg-gradient-to-r from-blue-400 to-pink-400 text-white font-bold p-3 rounded-lg transition duration-300 w-full shadow transition duration-800">
                 {t.selectAvatar}
               </button>
               <h3 className="text-xs font-bold text-gray-700 dark:text-gray-200">
@@ -169,7 +169,7 @@ const Register = () => {
                 required
               />
               <button
-                className="bg-gradient-to-r from-pink-400 to-orange-400 text-white font-bold p-3 rounded-lg hover:from-orange-400 hover:to-pink-400 w-full shadow transition duration-300"
+                className=" bg-gradient-to-r from-blue-400 to-pink-400 text-white font-bold p-3 rounded-lg hover:from-orange-400 hover:to-pink-400 w-full shadow transition duration-300"
                 type="submit"
               >
                 {t.login}
