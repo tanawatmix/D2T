@@ -136,6 +136,17 @@ const HomeUI = () => {
                   boxShadow: "0 4px 32px rgb(238, 244, 114) ",
                 }}
                 whileTap={{ scale: 0.97 }}
+                animate={{
+                  boxShadow: [
+                    "0 0 0px rgba(255,192,203,0.5)",
+                    "0 0 20px rgba(255,192,203,0.8)",
+                    "0 0 0px rgba(255,192,203,0.5)",
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
               >
                 <span className="relative overflow-hidden">
                   <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
