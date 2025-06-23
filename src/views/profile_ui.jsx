@@ -2,16 +2,22 @@ import React, { useState, useCallback, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeContext } from "../ThemeContext";
 import Cropper from "react-easy-crop";
-import getCroppedImg from "./utils/cropImage"; // ฟังก์ชันสำหรับครอปภาพ
+import getCroppedImg from "./utils/cropImage";
 import Profile from "./assets/nay.jpg";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import Slider from "@mui/material/Slider";
 import Modal from "@mui/material/Modal";
 import { useTranslation } from "react-i18next";
-
 import bp from "./assets/bp.jpg";
 import wp from "./assets/whiteWater.jpg";
+
+const initialForm = {
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const ProfileUI = () => {
   const { t } = useTranslation();
@@ -22,34 +28,26 @@ const ProfileUI = () => {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [form, setForm] = useState(initialForm);
   const { darkMode } = useContext(ThemeContext);
 
   const handleSaveEdit = () => {
     setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 1000);
+    setTimeout(() => setShowSuccess(false), 1000);
   };
 
-  const [form, setForm] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const onCropComplete = useCallback((_, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
+  const onCropComplete = useCallback((_, areaPixels) => {
+    setCroppedAreaPixels(areaPixels);
   }, []);
 
   const handleImageSelect = (event) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.addEventListener("load", () => {
+      reader.onload = () => {
         setImageSrc(reader.result);
         setOpen(true);
-      });
+      };
       reader.readAsDataURL(file);
     }
   };
@@ -59,16 +57,18 @@ const ProfileUI = () => {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
       setAvatar(croppedImage);
       setOpen(false);
+      setZoom(1);
+      setCrop({ x: 0, y: 0 });
     }
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
     <div
-      className="font-sriracha text-black relative bg-fixed bg-center bg-cover transition duration-500 flex-1"
+      className="font-sriracha text-black relative bg-fixed bg-center bg-cover transition duration-500 flex-1 min-h-screen"
       style={{ backgroundImage: `url(${darkMode ? bp : wp})` }}
     >
       <Navbar />
@@ -77,90 +77,93 @@ const ProfileUI = () => {
           <h2 className="text-xl font-semibold mb-2 underline text-center">
             {t("YourProfile")}
           </h2>
-
-          <div className="flex items-center justify-center mt-4 mb-4">
+          <div className="flex flex-col items-center mt-4 mb-4 gap-2">
             <img
               src={avatar}
-              className="w-40 h-40 rounded-2xl border border-blue-400 text-secondary dark:border-pink-400 object-cover"
+              className="w-40 h-40 rounded-2xl border border-blue-400 dark:border-pink-400 object-cover"
               alt="Avatar"
             />
-            <div>
-              <input
-                type="file"
-                accept="image/*"
-                id="avatar-upload"
-                className="hidden"
-                onChange={handleImageSelect}
-              />
-            </div>
-          </div>
-
-          <div className="flex justify-center">
+            <input
+              type="file"
+              accept="image/*"
+              id="avatar-upload"
+              className="hidden"
+              onChange={handleImageSelect}
+            />
             <label
               htmlFor="avatar-upload"
-              className="bg-primary dark:bg-secondary dark:hover:bg-primary dark:hover:text-secondary text-secondary dark:text-primary px-1 py-2 rounded cursor-pointer hover:bg-secondary hover:text-white transition border border-blue-400 text-secondary dark:border-pink-400"
+              className="bg-primary dark:bg-secondary dark:hover:bg-primary dark:hover:text-secondary text-secondary dark:text-primary px-3 py-2 rounded cursor-pointer hover:bg-secondary hover:text-white transition border border-blue-400 dark:border-pink-400"
             >
               {t("ChangAvatar")}
             </label>
           </div>
-
-          <div className="mb-4">
-            <label className="block text-sm mb-1">{t("Username")}</label>
-            <input
-              maxLength={15}
-              type="text"
-              name="username"
-              value={form.username}
-              onChange={handleChange}
-              className="w-full p-2 rounded border border-blue-400 text-secondary dark:border-pink-400"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm mb-1">{t("Email")}</label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full p-2 rounded border border-blue-400 text-secondary dark:border-pink-400"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm mb-1">{t("Pass")}</label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              className="w-full p-2 rounded border border-blue-400 text-secondary dark:border-pink-400"
-            />
-          </div>
-
-          <div className="mb-6">
-            <label className="block text-sm mb-1">{t("ConPass")}</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={form.confirmPassword}
-              onChange={handleChange}
-              className="w-full p-2 rounded border border-blue-400 text-secondary dark:border-pink-400"
-            />
-          </div>
-
-          <button
-            className="bg-green-500 dark:bg-green-400 border-blue-400 dark:border-pink-400 text-secondary dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 ml-2 rounded transition border"
-            onClick={handleSaveEdit}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSaveEdit();
+            }}
           >
-            {t("save")}
-          </button>
-          <button
-            className="bg-red-500 dark:bg-red-400    border-blue-400 text-secondary dark:border-pink-400 dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 ml-2 rounded transition border"
-            onClick={() => (window.location.href = "/home")}
-          >
-            {t("back")}
-          </button>
+            <div className="mb-4">
+              <label className="block text-sm mb-1">{t("Username")}</label>
+              <input
+                maxLength={15}
+                type="text"
+                name="username"
+                value={form.username}
+                onChange={handleChange}
+                className="w-full p-2 rounded border border-blue-400 dark:border-pink-400"
+                autoComplete="username"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm mb-1">{t("Email")}</label>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full p-2 rounded border border-blue-400 dark:border-pink-400"
+                autoComplete="email"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm mb-1">{t("Pass")}</label>
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full p-2 rounded border border-blue-400 dark:border-pink-400"
+                autoComplete="new-password"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-sm mb-1">{t("ConPass")}</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={handleChange}
+                className="w-full p-2 rounded border border-blue-400 dark:border-pink-400"
+                autoComplete="new-password"
+              />
+            </div>
+            <div className="flex gap-2 justify-end">
+              <button
+                type="submit"
+                className="bg-green-500 dark:bg-green-400 border-blue-400 dark:border-pink-400 text-secondary dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 rounded transition border"
+              >
+                {t("save")}
+              </button>
+              <button
+                type="button"
+                className="bg-red-500 dark:bg-red-400 border-blue-400 text-secondary dark:border-pink-400 dark:text-primary hover:text-primary hover:bg-secondary dark:hover:text-secondary dark:hover:bg-primary font-bold px-6 py-2 rounded transition border"
+                onClick={() => (window.location.href = "/home")}
+              >
+                {t("back")}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <Footer />
@@ -194,13 +197,13 @@ const ProfileUI = () => {
               onClick={() => setOpen(false)}
               className="bg-gray-300 px-4 py-2 rounded"
             >
-              Cancel
+              {t("Cancel") || "Cancel"}
             </button>
             <button
               onClick={handleSaveImage}
               className="bg-blue-500 text-white px-4 py-2 rounded"
             >
-              Save
+              {t("Save") || "Save"}
             </button>
           </div>
         </div>
@@ -215,7 +218,7 @@ const ProfileUI = () => {
             className="fixed inset-0 flex items-center justify-center z-50"
           >
             <div className="bg-primary border-2 border-dashed border-black text-white bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 font-bold px-6 py-3 rounded-lg shadow-lg text-center absolute top-10">
-              ✅ บันทึกแล้ว!
+              ✅ {t("Saved") || "บันทึกแล้ว!"}
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}

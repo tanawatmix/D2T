@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useMemo } from "react";
 import { motion, useMotionValue } from "framer-motion";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
@@ -6,8 +7,8 @@ import { ThemeContext } from "../ThemeContext";
 import { t } from "i18next";
 
 import D2T2 from "./assets/dare2New.png";
-import bp from "./assets/bp.jpg"; // ภาพพื้นหลัง Dark Mode
-import wp from "./assets/whiteWater.jpg"; // ภาพพื้นหลัง Light Mode
+import bp from "./assets/bp.jpg";
+import wp from "./assets/whiteWater.jpg";
 
 const HomeUI = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -54,7 +55,7 @@ const HomeUI = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setImgIndex((prev) => (prev + 1) % images.length);
-    }, 2000);
+    }, 2500);
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -66,9 +67,13 @@ const HomeUI = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // --- New: Add animated background particles ---
+
+  // --- New: Carousel image effect ---
+
   return (
     <div
-      className={`relative min-h-screen transition duration-500 ${
+      className={`relative min-h-screen transition duration-500 overflow-x-hidden ${
         darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
       }`}
       style={{
@@ -84,27 +89,53 @@ const HomeUI = () => {
     >
       <Navbar />
 
-      <div className="relative">
+      <div className="relative z-10">
         <div className="flex flex-col items-center justify-center min-h-screen px-4">
-          <img src={D2T2} alt="D2T" className="w-64 h-42 mt-16" />
-          <h1
+          <motion.img
+            src={D2T2}
+            alt="D2T"
+            className="w-64 h-42 mt-16 drop-shadow-2xl"
+            initial={{ rotate: 0, opacity: 0 }}
+            animate={{ rotate: [-2, 2, -2], opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
+          />
+
+          <motion.h1
             className={`font-sriracha text-6xl py-4 px-20 font-extrabold mb-4 text-center drop-shadow-lg transition duration-500 bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
               darkMode
                 ? "from-blue-500 via-purple-300 to-pink-400"
                 : "from-pink-500 via-pink-400 to-orange-300"
             }`}
+            initial={{ y: -40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
           >
             {t("welcome_message")}
-          </h1>
-
-          <div className="font-sriracha max-w-3xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-3 mb-8 transition duration-500">
+          </motion.h1>
+          <motion.div
+            className="font-sriracha max-w-3xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-3 mb-8 transition duration-500"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             <p className="text-xl font-bold text-center mb-4">{t("title")}</p>
             <p className="text-base text-center mb-4">{t("title2")}</p>
 
             <div className="mx-auto h-20 w-full max-w-72 flex items-center justify-center">
-              <button
-                className="group flex h-12 w-56 items-center justify-center animate-gradient-anims gap-3 border-2 border-pink-500 dark:border-blue-400 bg-gradient-to-r from-pink-100 via-orange-100 to-white dark:from-blue-900 dark:via-purple-900 dark:to-gray-900 px-8 text-lg font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200"
+              <motion.button
+                className="group flex h-12 w-56 items-center justify-center animate-gradient-anims gap-3 border-2 border-pink-500 dark:border-blue-400 bg-gradient-to-r from-pink-100 via-orange-100 to-white dark:from-blue-900 dark:via-purple-900 dark:to-gray-900 px-8 text-lg font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200 relative overflow-hidden"
                 onClick={() => (window.location.href = "/Posts")}
+                whileHover={{
+                  scale: 1.08,
+                  boxShadow: "0 4px 32px rgb(238, 244, 114) ",
+                }}
+                whileTap={{ scale: 0.97 }}
               >
                 <span className="relative overflow-hidden">
                   <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
@@ -127,25 +158,12 @@ const HomeUI = () => {
                     d="M5 12h14m-7-7l7 7-7 7"
                   />
                 </svg>
-              </button>
+              </motion.button>
             </div>
-          </div>
-
+          </motion.div>
           {/* Carousel */}
           <div className="relative w-full max-w-3xl flex items-center justify-center mt-8 mb-4">
-            <button
-              className="absolute hover:scale-150 left-0 top-1/2 -translate-y-1/2 z-20 bg-white/70 dark:bg-gray-800/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-black dark:text-white rounded-full p-3 shadow-lg transition"
-              onClick={() =>
-                setImgIndexSafe((prev) =>
-                  prev === 0 ? images.length - 1 : prev - 1
-                )
-              }
-              aria-label="Scroll left"
-            >
-              🢀
-            </button>
-
-            <div className="overflow-hidden rounded-xl w-full">
+            <div className="overflow-hidden rounded-xl w-full shadow-2xl border-4 border-pink-200 dark:border-blue-400">
               <motion.div
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
@@ -156,36 +174,33 @@ const HomeUI = () => {
                 className="flex"
               >
                 {images.map((src, idx) => (
-                  <img
+                  <motion.img
                     key={idx}
                     src={src}
                     alt={`carousel-img-${idx}`}
-                    className="object-cover object-center mx-auto w-full h-80 flex-shrink-0"
+                    className={`object-cover object-center mx-auto w-full h-80 flex-shrink-0 transition-all duration-500 ${
+                      idx === imgIndex
+                        ? "shadow-2xl scale-105 brightness-110"
+                        : "brightness-75"
+                    }`}
                     style={{ minWidth: "100%" }}
+                    initial={{ opacity: 0.7, scale: 0.95 }}
+                    animate={{
+                      opacity: idx === imgIndex ? 1 : 0.7,
+                      scale: idx === imgIndex ? 1.05 : 0.95,
+                    }}
+                    transition={{ duration: 0.5 }}
                   />
                 ))}
               </motion.div>
             </div>
-
-            <button
-              className="absolute hover:scale-150 right-0 top-1/2 -translate-y-1/2 z-20 bg-white/70 dark:bg-gray-800/70 hover:bg-white/90 dark:hover:bg-gray-700/90 text-black dark:text-white rounded-full p-3 shadow-lg transition"
-              onClick={() =>
-                setImgIndexSafe((prev) =>
-                  prev === images.length - 1 ? 0 : prev + 1
-                )
-              }
-              aria-label="Scroll right"
-            >
-              🡺
-            </button>
           </div>
-
-          <div className="flex bg-primary rounded-full justify-center">
+          <div className="flex bg-primary rounded-full justify-center mt-4">
             {images.map((_, idx) => (
-              <button
+              <motion.button
                 key={idx}
                 onClick={() => setImgIndexSafe(idx)}
-                className={`h-3 w-6 hover:scale-150 rounded-full hover:border-2 border-white-500 transition-all duration-100 ${
+                className={`h-3 w-6 hover:scale-150 mx-1 rounded-full hover:border-2 border-white-500 transition-all duration-100 ${
                   idx === imgIndex
                     ? darkMode
                       ? "bg-secondary scale-150 shadow-lg"
@@ -193,11 +208,17 @@ const HomeUI = () => {
                     : "bg-primary hover:bg-gray-500"
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
+                whileHover={{ scale: 1.4 }}
               />
             ))}
           </div>
-
-          <div className="max-w-4xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-4 mt-16 mb-20 transition duration-500">
+          <motion.div
+            className="max-w-4xl backdrop-blur-sm rounded-xl shadow-xl bg-white/70 dark:bg-gray-900/70 p-4 mt-16 mb-20 transition duration-500"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
             <h2
               className={`font-sriracha text-2xl font-bold mb-4 text-center bg-gradient-to-r from-pink-500 via-pink-400 to-orange-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-anim ${
                 darkMode
@@ -208,20 +229,29 @@ const HomeUI = () => {
               {t("title3")}
             </h2>
             <p className="font-sriracha text-base text-center">{t("title4")}</p>
-            <div className="max-w-3xl mx-auto my-8 relative aspect-video rounded-xl overflow-hidden shadow-lg">
+            <div className="max-w-3xl mx-auto my-8 relative aspect-video rounded-xl overflow-hidden shadow-lg border-4 border-pink-200 dark:border-blue-400">
               <iframe
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/Y2KLfYr-UiQ?autoplay=1&mute=1"
                 title="YouTube video player"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                initial={{ opacity: 0.2 }}
+                animate={{ opacity: [0.2, 0.4, 0.2] }}
+                transition={{ repeat: Infinity, duration: 3 }}
+                style={{
+                  background:
+                    "radial-gradient(circle at 80% 20%, rgba(236,72,153,0.15), transparent 70%)",
+                }}
+              />
             </div>
             <p className="font-sriracha text-base text-center">
               🔺🔺🔺🔺----------------------------------🔺🔺🔺🔺
             </p>
-          </div>
+          </motion.div>
         </div>
         <Footer />
       </div>
